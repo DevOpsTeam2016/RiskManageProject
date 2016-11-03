@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <constant name="struts.action.excludePattern" value="/static/.*?" /><!--允许访问资源文件-->
+
+    <package name="test" namespace="/" extends="struts-default">
+        <action name="test" class="TestAction" method="execute">
+            <result name="success">/templates/test/success.jsp</result>
+            <result name="fail">/templates/test/fail.jsp</result>
+        </action>
+    </package>
+
+</struts>
