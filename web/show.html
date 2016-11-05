@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Submit the risk list</title>
+    <title>管理者</title>
     <link rel="stylesheet" href="css/gem_form.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.1.1.min.js"></script>
@@ -19,26 +19,26 @@
 <div class="menu">
     <nav class='navbar navbar-default' role='navigation'>
         <div class='container-fluid'>
-            <div class='navbar-header'><a class='navbar-brand branding'>branding</a></div>
+            <div class='navbar-header'><a class='navbar-brand branding'>风险管理</a></div>
             <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
                 <ul class='nav navbar-nav'id='nav_left'>
                     <li id="menu1">
-                        <a href="#">Index</a>
+                        <a href="#">首页</a>
                     </li>
                     <li id="menu2" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            Project
+                            项目
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" data-role="menu">
                             <li id="menu3">
                                 <a href="#">
-                                    New Project
+                                    新建
                                 </a>
                             </li>
                             <li id="menu4">
                                 <a href="#">
-                                    Old Project
+                                    下一个
                                 </a>
                             </li>
                         </ul>
@@ -50,12 +50,12 @@
                 <ul class='nav navbar-nav navbar-right'>
                     <li class='dropdown'>
                         <a id='text' href='#' class='dropdown-toggle' data-toggle='dropdown'>
-                            <span id="icon" class="mif-cog">UserName</span>
+                            <span id="icon" class="mif-cog">账号管理</span>
                             <span class="caret"></span>
                         </a>
                         <ul class='dropdown-menu' role='menu' id='nav_right'>
                             <li>
-                                <a href="login.html" class="fg-white1 fg-hover-yellow">log out</a>
+                                <a href="login.html" class="fg-white1 fg-hover-yellow">退出登录</a>
                             </li>
                         </ul>
 
@@ -70,27 +70,20 @@
     <div class="gem_sidebar" style="height: 100%;width: 18%;float: left;padding-left: 30px;padding-right: 5px">
         <div style="margin-left: -10px;height: 100%">
             <ul id="main-nav" class="main-nav nav nav-tabs nav-stacked" style="height: 100%">
-                <li id="sidebar1" class="title" url="xxxxxxxxxxxxxxxxxx"><a href="##"><i class="glyphicon glyphicon-th-large"></i>Title 1</a></li>
-                <li id="sidebar2" class="stick" url="kkkkkkkkkkkkkkkkkkk"><a href="##"><i class="glyphicon glyphicon-cog"></i>Dashboard</a></li>
-                <li id="sidebar3" class="stick" url="xx1111111111xxxx"><a href="#"><i class="glyphicon glyphicon-fire"></i>Layouts</a></li>
+                <li id="sidebar1" class="title" url="xxxxxxxxxxxxxxxxxx"><a href="##"><i class="glyphicon glyphicon-th-large"></i>新增条目</a></li>
+                <li id="sidebar2" class="stick" url="kkkkkkkkkkkkkkkkkkk"><a href="##"><i class="glyphicon glyphicon-cog"></i>设置</a></li>
+                <li id="sidebar3" class="stick" url="xx1111111111xxxx"><a href="#"><i class="glyphicon glyphicon-fire"></i>布局</a></li>
                 <li id="sidebar9" class="stick" url=""><a href="#kkkkkkk" class="nav-header collapsed" data-toggle="collapse" aria-expanded="false">
-                    <i class="mif-tree icon"></i>Subitem 3<span class="pull-right glyphicon glyphicon-chevron-toggle"></span></a>
+                    <i class="mif-tree icon"></i>子目录<span class="pull-right glyphicon glyphicon-chevron-toggle"></span></a>
                     <ul id="kkkkkkk" class="nav nav-list secondmenu collapse" style="height: 0px;" aria-expanded="false">
-                        <li id="sidebar10" class="stick" url="#gem_table"><a href="###"><i class="glyphicon glyphicon-cog"></i>Subitem 3.1</a></li>
-                        <li id="sidebar11" class="stick" url="xxx333333333xxxx"><a href="##"><i class="glyphicon glyphicon-user"></i>Subitem 3.2</a></li>
+                        <li id="sidebar10" class="stick" url="#gem_table"><a href="###"><i class="glyphicon glyphicon-cog"></i>子目录1</a></li>
+                        <li id="sidebar11" class="stick" url="xxx333333333xxxx"><a href="##"><i class="glyphicon glyphicon-user"></i>子目录2</a></li>
                     </ul>
                 </li>
-                <li id="sidebar12" class="stick" url="xxxx44444444xxxx"><a href="##"><i class="glyphicon glyphicon-th-list"></i>other Item0</a></li>
-                <li id="sidebar13" class="stick" url="xxxx555555555xxxx"><a href="##"><i class="glyphicon glyphicon-asterisk"></i>other Item1</a></li>
-                <li id="sidebar14" class="stick" url="xxxx666666666xxxx"><a href="##"><i class="glyphicon glyphicon-edit"></i>other Item2</a></li>
-                <li id="sidebar4" class="stick" url="xxxxx77777777xxxxx"><a href="#aaaaaa" class="nav-header collapsed" data-toggle="collapse">
-                    <i class="glyphicon glyphicon-eye-open"></i>Layouts<span class="pull-right glyphicon glyphicon-chevron-toggle"></span></a>
-                    <ul id="aaaaaa" class="nav nav-list secondmenu collapse" style="height: 0px"><li id="sidebar5" class="stick" url="xxxxx888888888xxxx">
-                        <a href="##"><i class="glyphicon glyphicon-credit-card"></i>Layouts</a></li>
-                        <li id="sidebar6" class="stick" url="xxxxx999999999xxxx"><a href="##"><i class="glyphicon glyphicon-star-empty"></i>Layouts</a></li>
-                        <li id="sidebar7" class="stick" url="xxxaaaaaaaaaaaaxxx"><a href="##"><i class="glyphicon glyphicon-text-width"></i>Layouts</a></li>
-                    </ul>
-                </li>
+                <li id="sidebar12" class="stick" url="xxxx44444444xxxx"><a href="##"><i class="glyphicon glyphicon-th-list"></i>其他目录</a></li>
+                <li id="sidebar13" class="stick" url="xxxx555555555xxxx"><a href="##"><i class="glyphicon glyphicon-asterisk"></i>其他目录</a></li>
+                <li id="sidebar14" class="stick" url="xxxx666666666xxxx"><a href="##"><i class="glyphicon glyphicon-edit"></i>其他目录</a></li>
+
             </ul>
         </div>
     </div>
