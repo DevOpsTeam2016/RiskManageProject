@@ -42,6 +42,7 @@
     <!--actions-->
     <bean id="DeveloperAction" class="com.devopsteam.action.DeveloperAction"/>
     <bean id="LoginAction" class="com.devopsteam.action.LoginAction"/>
+    <bean id="ManagerAction" class="com.devopsteam.action.ManagerAction"/>
     <bean id="TestAction" class="com.devopsteam.action.TestAction"/>
 
 </beans>
