@@ -17,7 +17,7 @@ public class Risk {
     String content;
     int possibility;  //0 1 2递增
     int effect;  //0 1 2递增
-    int trigger;
+    int threshold;
     Date timestamp;
     @ManyToOne
     Project project;
@@ -53,12 +53,12 @@ public class Risk {
         this.possibility = possibility;
     }
 
-    public int getTrigger() {
-        return trigger;
+    public int getThreshold() {
+        return threshold;
     }
 
-    public void setTrigger(int trigger) {
-        this.trigger = trigger;
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
     }
 
     public int getEffect() {

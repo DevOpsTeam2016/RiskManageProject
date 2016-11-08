@@ -13,4 +13,23 @@
         </action>
     </package>
 
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="login" class="LoginAction" method="login">
+            <result name="login">/templates/login/login.jsp</result>
+        </action>
+    </package>
+    
+    <package name="developer" namespace="/developer" extends="struts-default">
+        <interceptors>
+            <interceptor name="DeveloperInterceptor" class="com.devopsteam.interceptor.DeveloperInterceptor"/>
+            <interceptor-stack name="DeveloperStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="DeveloperInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="403">/templates/login/403.jsp</result>
+        </global-results>
+    </package>
+
 </struts>
