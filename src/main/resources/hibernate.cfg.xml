@@ -21,7 +21,11 @@
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
 
+        <mapping class="com.devopsteam.model.Project"/>
+        <mapping class="com.devopsteam.model.Risk"/>
+        <mapping class="com.devopsteam.model.State"/>
         <mapping class="com.devopsteam.model.Test"/>
+        <mapping class="com.devopsteam.model.User"/>
 
     </session-factory>
 </hibernate-configuration>
