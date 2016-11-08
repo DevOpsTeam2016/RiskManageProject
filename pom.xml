@@ -16,7 +16,6 @@
         <version>2.6</version>
         <configuration>
           <webXml>web/WEB-INF/web.xml</webXml>
-          <resourcesXML>src/main/resources</resourcesXML>
           <warSourceDirectory>web</warSourceDirectory>
         </configuration>
       </plugin>
