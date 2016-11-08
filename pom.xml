@@ -17,6 +17,11 @@
         <configuration>
           <webXml>web/WEB-INF/web.xml</webXml>
           <warSourceDirectory>web</warSourceDirectory>
+          <resources>
+            <resource>
+              <directory>src/main/resources</directory>
+            </resource>
+         </resources>  
         </configuration>
       </plugin>
      </plugins>
