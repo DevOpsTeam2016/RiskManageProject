@@ -6,38 +6,30 @@
 
 <rapid:override name="content">
     <div style="width: 50%; margin-left: 25%;margin-top: 200px;padding: 30px 30px 30px 30px" class="panel panel-default">
-        <form class="form-horizontal" role="form"  name='login' onsubmit="return validateForm( );" action="coder.html">
+        <s:form class="form-horizontal" role="form"  name='login' onsubmit="return validateForm( );" action="login" method="POST">
             <div class="form-group">
-                <label for="account" class="col-sm-2 control-label">账号</label>
+                <label for="username" class="col-sm-2 control-label">账号</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="account" name="acc" placeholder="账号">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="账号">
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="密码">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="密码">
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">类型</label>
-                <div class="col-sm-10">
-                    <div>
-                        <label class="checkbox-inline">
-                            <input type="radio" name="type" id="type1" value="option1" checked>开发者
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="radio" name="type" id="type2" value="option2" >管理者
-                        </label>
-                    </div>
+            <s:if test="#session.message != null">
+                <div id="message">
+                    <%=session.getAttribute("message")%>
                 </div>
-            </div>
+            </s:if>
             <div class="form-group">
                 <div class="col-sm-offset-10 col-sm-2">
-                    <input type="submit" name="submit">
+                    <input class="form-control" type="submit" name="submit">
                 </div>
             </div>
-        </form>
+        </s:form>
     </div>
 </rapid:override>
 

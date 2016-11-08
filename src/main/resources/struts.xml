@@ -16,6 +16,9 @@
     <package name="default" namespace="/" extends="struts-default">
         <action name="login" class="LoginAction" method="login">
             <result name="login">/templates/login/login.jsp</result>
+            <result name="error" type="redirect">/login</result>
+            <result name="manager" type="redirect">/manager/index</result>
+            <result name="developer" type="redirect">/developer/index</result>
         </action>
     </package>
     
@@ -25,6 +28,25 @@
             <interceptor-stack name="DeveloperStack">
                 <interceptor-ref name="defaultStack"/>
                 <interceptor-ref name="DeveloperInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="403">/templates/login/403.jsp</result>
+        </global-results>
+        <action name="index" class="DeveloperAction" method="index">
+            <result name="index">/templates/developer/index.jsp</result>
+        </action>
+        <action name="create_project" class="DeveloperAction" method="createProject">
+            <result name="success" type="redirect">/developer/index</result>
+        </action>
+    </package>
+
+    <package name="manager" namespace="/manager" extends="struts-default">
+        <interceptors>
+            <interceptor name="ManagerInterceptor" class="com.devopsteam.interceptor.ManagerInterceptor"/>
+            <interceptor-stack name="DeveloperStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="ManagerInterceptor"/>
             </interceptor-stack>
         </interceptors>
         <global-results>
