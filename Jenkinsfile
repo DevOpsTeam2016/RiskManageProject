@@ -1,7 +1,7 @@
 node {//运行节点
     stage('SCM') {//运行阶段
     //从github上拉取代码
-        git 'git@github.com:DevOpsTeam2016/RiskManageProject.git'
+        git 'https://github.com/DevOpsTeam2016/RiskManageProject.git'
     }
     stage('QA') {
     //执行SonarQube分析
