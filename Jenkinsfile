@@ -10,7 +10,7 @@ node {//运行节点
     stage('build') {
     //用Maven来打包
         def mvnHome = tool 'M3'//之前配置的Maven工具
-        sh "${mvnHome}/bin/mvn -B clean compile war:war"//maven的清理和打包
+        sh "${mvnHome}/bin/mvn -B clean package"//maven的清理和打包
     }
     stage('deploy') {
     //用Docker部署，其中的‘my’可以自定义
