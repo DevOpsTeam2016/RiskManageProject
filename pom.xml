@@ -17,7 +17,7 @@
         <configuration>
           <webXml>web/WEB-INF/web.xml</webXml>
           <warSourceDirectory>web</warSourceDirectory>
-          <sourceDirectory>src/main/webapp/resource</sourceDirectory>  
+          <sourceDirectory>src/main/web/resources</sourceDirectory>  
           <includes>  
                  <include>**/*.js</include>  
                  <include>**/*.css</include>  
