@@ -82,12 +82,13 @@
 
     <div class="row">
         <div class="list-group col-sm-2" style="padding-left: 20px;padding-top: 10px">
-        <s:iterator value="projectList">
-            <a  class="list-group-item" href="/developer/project?id=<s:property value="id" ></s:property>">
-                <s:property value="name"></s:property>
-            </a>
-        </s:iterator>
-        s</div>
+            <s:iterator value="projectList">
+                <a  class="list-group-item" href="/developer/project?id=<s:property value="id" ></s:property>">
+                    <s:property value="name"></s:property>
+                </a>
+                <s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date>
+            </s:iterator>
+        </div>
     </div>
 </rapid:override>
 
