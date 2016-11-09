@@ -17,6 +17,10 @@ public class ProjectDaoImpl implements ProjectDao {
     @Autowired
     private BaseDao baseDao;
 
+    public Project find(int id) {
+        return (Project) baseDao.load(Project.class, id);
+    }
+
     public List<Project> findAll() {
         return baseDao.getAllList(Project.class);
     }

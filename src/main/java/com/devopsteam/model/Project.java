@@ -43,4 +43,12 @@ public class Project {
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
+
+    public List<Risk> getRiskList() {
+        return riskList;
+    }
+
+    public void setRiskList(List<Risk> riskList) {
+        this.riskList = riskList;
+    }
 }

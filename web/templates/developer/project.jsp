@@ -9,9 +9,18 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>
 
-<rapid:override name="title">项目</rapid:override>
+<rapid:override name="title">
+    <s:if test="#session.projectName != null">
+        <%=session.getAttribute("projectName")%>
+    </s:if>
+</rapid:override>
 
 <rapid:override name="content">
+    <s:iterator value="riskList">
+        <s:property value="id"></s:property>
+        <s:property value="name"></s:property>
+        <s:property value="tracker"></s:property>
+    </s:iterator>
 </rapid:override>
 
 <%@ include file="/base.jsp" %>
