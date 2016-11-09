@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface ProjectDao {
 
+    public Project find(int id);
+
     public List<Project> findAll();
 
     public void save(Project project);
