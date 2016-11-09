@@ -15,6 +15,9 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name;
+    int type; //0: 小型 1：中型  2：大型
+    String language;
+    int people;
     Date timestamp;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "project")
     @OrderBy("timestamp desc")
@@ -34,6 +37,30 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public int getPeople() {
+        return people;
+    }
+
+    public void setPeople(int people) {
+        this.people = people;
     }
 
     public Date getTimestamp() {

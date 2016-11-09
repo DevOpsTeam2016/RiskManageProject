@@ -83,9 +83,19 @@
     <div class="row">
         <div class="list-group col-sm-2" style="padding-left: 20px;padding-top: 10px">
             <s:iterator value="projectList">
+                <s:property value="id"></s:property>
                 <a  class="list-group-item" href="/developer/project?id=<s:property value="id" ></s:property>">
                     <s:property value="name"></s:property>
                 </a>
+                <s:property value="language"></s:property>
+                <s:property value="people"></s:property>
+                <s:if test="<s:property value=\"type\"></s:property> == 0">
+                    小型
+                </s:if>
+                <s:elseif test="<s:property value=\"type\"></s:property> == 1">
+                    中型
+                </s:elseif>
+                <s:else>大型</s:else>
                 <s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date>
             </s:iterator>
         </div>

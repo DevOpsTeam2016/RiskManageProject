@@ -19,7 +19,7 @@ public class LoginAction extends BaseAction {
         String password = request.getParameter("password");
         String result = loginService.checkLogin(username, password);
         if (result.equals("error")) {
-            session.put("message", "Username or password is wrong");
+            session.put("message", "用户名或密码错误");
         } else {
             session.put("username", username);
             session.put("role", result);

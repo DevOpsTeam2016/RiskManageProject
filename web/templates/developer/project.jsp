@@ -23,13 +23,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">创建项目</h4>
+                    <h4 class="modal-title" id="myModalLabel">创建风险</h4>
                 </div>
                 <div class="modal-body">
                     <form action="/developer/project" method="post">
                         <div class="form-group">
                             <input type="hidden" name="projectId" value="<%=session.getAttribute("projectId")%>">
                             <input type="text" class="form-control" name="content" placeholder="风险内容" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="possibility" class="col-sm-2 control-label">可能性</label>
+                            <select class="form-control" id="possibility" name="possibility" required>
+                                <option value="0">低</option>
+                                <option value="1">中</option>
+                                <option value="2">高</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="possibility" placeholder="可能性" required/>
