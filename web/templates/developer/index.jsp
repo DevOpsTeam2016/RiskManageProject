@@ -38,7 +38,7 @@
     <button class="form-control" name="createProject" data-toggle="modal" data-target="#createProjectModal">创建项目</button>
 
     <s:iterator value="projectList">
-        <a href="/developer/project/?id=<s:property value="id"/>"
+        <a href="/developer/project?id=<s:property value="id"></s:property>">
             <s:property value="name"></s:property>
         </a>
     </s:iterator>
