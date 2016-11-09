@@ -40,7 +40,15 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="possibility" placeholder="可能性" required/>
+                            <label for="effect" class="col-sm-2 control-label">影响程度</label>
+                            <select class="form-control" id="effect" name="effect" required>
+                                <option value="0">低</option>
+                                <option value="1">中</option>
+                                <option value="2">高</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="threshold" placeholder="阈值" required/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">创建</button>
@@ -51,12 +59,25 @@
             </div>
         </div>
     </div>
+
     <button class="form-control" name="createRisk" data-toggle="modal" data-target="#createRiskModal">创建风险</button>
 
     <s:iterator value="riskList">
         <s:property value="id"></s:property>
-        <s:property value="name"></s:property>
-        <s:property value="tracker"></s:property>
+        <s:property value="content"></s:property>
+        <s:property value="possibility"></s:property>
+        <s:property value="effect"></s:property>
+        <s:property value="threshold"></s:property>
+        <s:property value="creator"></s:property>
+        <s:if test="tracker == null">
+            <select name="assignRisk">
+                <option value="">--未委派--</option>
+            </select>
+        </s:if>
+        <s:else>
+            <s:property value="tracker"></s:property>
+        </s:else>
+        <s:property value="timestamp"></s:property>
     </s:iterator>
 </rapid:override>
 

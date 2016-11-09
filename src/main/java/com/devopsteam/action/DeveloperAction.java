@@ -37,6 +37,7 @@ public class DeveloperAction extends BaseAction {
         //显示项目的风险列表、创建风险
         if(request.getMethod().equalsIgnoreCase("get")) {
             String projectId = request.getParameter("id");
+            if (projectId == null) projectId = session.get("projectId").toString();
             riskList = developerService.getRiskList(projectId);
             session.put("projectId", projectId);
             session.put("projectName", developerService.getProjectName(projectId));
@@ -47,6 +48,7 @@ public class DeveloperAction extends BaseAction {
         String possibility = request.getParameter("possibility");
         String effect = request.getParameter("effect");
         String threshold = request.getParameter("threshold");
+        System.out.println(projectId + " " + content + " " + possibility + " " + effect + " " + threshold);
         developerService.createRisk(projectId, content, possibility, effect, threshold, session.get("username").toString());
         return "success";
     }

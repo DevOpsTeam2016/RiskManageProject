@@ -12,6 +12,15 @@
 <rapid:override name="title">管理者主页</rapid:override>
 
 <rapid:override name="content">
+    <s:iterator value="riskList">
+        <a href="/manage/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
+        <s:property value="project.name"></s:property>
+        <s:property value="content"></s:property>
+        <s:property value="possibility"></s:property>
+        <s:property value="effect"></s:property>
+        <s:property value="threshold"></s:property>
+        <s:property value="creator.name"></s:property>
+    </s:iterator>
 </rapid:override>
 
 <%@ include file="/base.jsp" %>

@@ -12,6 +12,47 @@
 <rapid:override name="title">风险</rapid:override>
 
 <rapid:override name="content">
+    <!-- Modal -->
+    <div id="createStateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">创建风险状态</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/manage/risk" method="post">
+                        <input type="hidden" name="riskId" value="<%=session.getAttribute("riskId")%>">
+                        <div class="form-group">
+                            <label for="state" class="col-sm-2 control-label">状态</label>
+                            <select class="form-control" id="state" name="state" required>
+                                <option value="0">未解决</option>
+                                <option value="1">解决中</option>
+                                <option value="2">已解决</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="description" placeholder="状态描述" required/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">创建</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="form-control" name="createState" data-toggle="modal" data-target="#createStateModal">创建风险状态</button>
+
+    <s:iterator value="stateList">
+        <s:property value="id"></s:property>
+        <s:property value="state"></s:property>
+        <s:property value="description"></s:property>
+        <s:property value="risk.content"></s:property>
+        <s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date>
+    </s:iterator>
 </rapid:override>
 
 <%@ include file="/base.jsp" %>

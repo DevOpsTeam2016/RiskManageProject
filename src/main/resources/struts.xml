@@ -17,7 +17,7 @@
         <action name="login" class="LoginAction" method="login">
             <result name="login">/templates/login/login.jsp</result>
             <result name="error" type="redirect">/login</result>
-            <result name="manager" type="redirect">/manager/index</result>
+            <result name="manager" type="redirect">/manage/index</result>
             <result name="developer" type="redirect">/developer/index</result>
         </action>
     </package>
@@ -48,10 +48,10 @@
         </action>
     </package>
 
-    <package name="manager" namespace="/manager" extends="struts-default">
+    <package name="manage" namespace="/manage" extends="struts-default">
         <interceptors>
             <interceptor name="ManagerInterceptor" class="com.devopsteam.interceptor.ManagerInterceptor"/>
-            <interceptor-stack name="DeveloperStack">
+            <interceptor-stack name="ManagerStack">
                 <interceptor-ref name="defaultStack"/>
                 <interceptor-ref name="ManagerInterceptor"/>
             </interceptor-stack>
@@ -59,6 +59,13 @@
         <global-results>
             <result name="403">/templates/login/403.jsp</result>
         </global-results>
+        <action name="index" class="ManagerAction" method="index">
+            <result name="index">/templates/manager/index.jsp</result>
+        </action>
+        <action name="risk" class="ManagerAction" method="risk">
+            <result name="risk">/templates/manager/risk.jsp</result>
+            <result name="success" type="redirect">/manage/risk</result>
+        </action>
     </package>
 
 </struts>
