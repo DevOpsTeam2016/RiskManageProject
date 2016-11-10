@@ -19,6 +19,8 @@ node {//运行节点
          sh "docker run -d -it --name my -p 11111:8080 -d tomcat"//启动容器，命名为‘my’，将宿主机的11111端口映射到容器的8080端口（11111可以修改，8080不能修改）
          sh "mv target/RiskManageProject-1.0.war target/ROOT.war"
          sh "docker cp target/ROOT.war my:/usr/local/tomcat/webapps"
+         sh "docker exec -t -i my /bin/bash"
+         sh "rm -rf /usr/local/tomcat/webapps/ROOT"
     }
     stage('results') {
     //生成制品
