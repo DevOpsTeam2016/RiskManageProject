@@ -6,8 +6,8 @@
 
     <groupId>com.devopsteam</groupId>
     <packaging>war</packaging>
-    <artifactId>RiskManageProject</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>ROOT</artifactId>
+    <version></version>
     <build>
       <resources>
             <resource>
