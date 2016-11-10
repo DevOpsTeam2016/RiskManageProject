@@ -99,6 +99,11 @@
                 <s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date>
             </s:iterator>
         </div>
+        <div class="jumbotron col-sm-8 col-sm-offset-1" style="margin-top:60px;padding-left:30px">
+            <h1>管理风险，科学开发项目</h1>
+            <p>通过软件项目风险管理系统，开发者可以将项目中发现的风险及时记录报告，管理者可以跟踪查看风险，从而达到规避风险的作用。</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button" style="width:150px">加入我们</a></p>
+        </div>
     </div>
 </rapid:override>
 
