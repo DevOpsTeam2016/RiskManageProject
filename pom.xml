@@ -7,7 +7,6 @@
     <groupId>com.devopsteam</groupId>
     <packaging>war</packaging>
     <artifactId>ROOT</artifactId>
-    <version></version>
     <build>
       <resources>
             <resource>
