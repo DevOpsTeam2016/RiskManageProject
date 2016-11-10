@@ -22,7 +22,7 @@
         </action>
     </package>
     
-    <package name="developer" namespace="/developer" extends="struts-default">
+    <package name="developer" namespace="/developer" extends="struts-default, json-default">
         <interceptors>
             <interceptor name="DeveloperInterceptor" class="com.devopsteam.interceptor.DeveloperInterceptor"/>
             <interceptor-stack name="DeveloperStack">
@@ -44,7 +44,11 @@
             <result name="success" type="redirect">/developer/project</result>
         </action>
         <action name="assign_risk" class="DeveloperAction" method="assignRisk">
-            <result name="success" type="redirect">/developer/project</result>
+            <result name="success" type="json">
+                <param name="includeProperties">
+                    message
+                </param>
+            </result>
         </action>
     </package>
 

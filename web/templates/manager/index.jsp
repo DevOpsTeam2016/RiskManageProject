@@ -46,7 +46,7 @@
                             </a>
                             <ul class='dropdown-menu' role='menu' id='nav_right'>
                                 <li>
-                                    <a href="../login/login.jsp" class="fg-white1 fg-hover-yellow">退出登录</a>
+                                    <a href="/login" class="fg-white1 fg-hover-yellow">退出登录</a>
                                 </li>
                             </ul>
 

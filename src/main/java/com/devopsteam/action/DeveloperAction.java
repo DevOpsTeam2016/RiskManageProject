@@ -2,6 +2,7 @@ package com.devopsteam.action;
 
 import com.devopsteam.model.Project;
 import com.devopsteam.model.Risk;
+import com.devopsteam.model.User;
 import com.devopsteam.service.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,9 @@ public class DeveloperAction extends BaseAction {
 
     private List<Project> projectList;
     private List<Risk> riskList;
+    private List<User> managerList;
+
+    private String message;
 
     public String index() {
         //显示项目列表
@@ -39,6 +43,7 @@ public class DeveloperAction extends BaseAction {
             String projectId = request.getParameter("id");
             if (projectId == null) projectId = session.get("projectId").toString();
             riskList = developerService.getRiskList(projectId);
+            managerList = developerService.getManagerList();
             session.put("projectId", projectId);
             session.put("projectName", developerService.getProjectName(projectId));
             return "project";
@@ -58,6 +63,7 @@ public class DeveloperAction extends BaseAction {
         String riskId = request.getParameter("riskId");
         String trackerName = request.getParameter("trackerName");
         developerService.assignRisk(riskId, trackerName);
+        message = "success";
         return "success";
     }
 
@@ -75,5 +81,21 @@ public class DeveloperAction extends BaseAction {
 
     public void setRiskList(List<Risk> riskList) {
         this.riskList = riskList;
+    }
+
+    public List<User> getManagerList() {
+        return managerList;
+    }
+
+    public void setManagerList(List<User> managerList) {
+        this.managerList = managerList;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

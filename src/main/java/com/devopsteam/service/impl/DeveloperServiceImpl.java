@@ -10,6 +10,7 @@ import com.devopsteam.service.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,6 +55,15 @@ public class DeveloperServiceImpl implements DeveloperService {
         User tracker = userDao.find(trackerName);
         risk.setTracker(tracker);
         riskDao.update(risk);
+    }
+
+    public List<User> getManagerList() {
+        List<User> allUser = userDao.findAll();
+        List<User> managerList = new ArrayList<User>();
+        for (User temp: allUser) {
+            if (temp.getRole() == 1) managerList.add(temp);
+        }
+        return managerList;
     }
 
     public String getProjectName(String projectId) {

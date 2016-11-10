@@ -50,7 +50,7 @@
                             </a>
                             <ul class='dropdown-menu' role='menu' id='nav_right'>
                                 <li>
-                                    <a href="../login/login.jsp" class="fg-white1 fg-hover-yellow">退出登录</a>
+                                    <a href="/login" class="fg-white1 fg-hover-yellow">退出登录</a>
                                 </li>
                             </ul>
 
@@ -108,29 +108,38 @@
         创建风险
         <span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
 
-    <div class="row">
-        <div class="list-group col-sm-4 col-lg-offset-4" style="padding-top: 10px">
+    <table class="table">
         <s:iterator value="riskList">
-            <a  class="list-group-item">
-                <s:property value="id"></s:property>
-                <s:property value="content"></s:property>
-                <s:property value="possibility"></s:property>
-                <s:property value="effect"></s:property>
-                <s:property value="threshold"></s:property>
-                <s:property value="creator"></s:property>
-                <s:if test="tracker == null">
-                <select name="assignRisk">
-                    <option value="">--未委派--</option>
-                </select>
-                </s:if>
-                <s:else>
-                    <s:property value="tracker"></s:property>
-                </s:else>
-                <s:property value="timestamp"></s:property>
-            </a>
+            <tr>
+                <td class="riskId"><s:property value="id"></s:property></td>
+                <td><s:property value="content"></s:property></td>
+                <td><s:property value="possibility"></s:property></td>
+                <td><s:property value="effect"></s:property></td>
+                <td><s:property value="threshold"></s:property></td>
+                <td><s:property value="creator.username"></s:property></td>
+                <td class="assignItem">
+                    <s:if test="tracker == null">
+                        <select name="assignRiskSelect">
+                            <option value="">未委派</option>
+                            <s:iterator value="managerList">
+                                <option value="<s:property value="username"></s:property>">
+                                    <s:property value="username"></s:property>
+                                </option>
+                            </s:iterator>
+                        </select>
+                    </s:if>
+                    <s:else>
+                        <s:property value="tracker.username"></s:property>
+                    </s:else>
+                </td>
+                <td><s:property value="timestamp"></s:property></td>
+            </tr>
         </s:iterator>
-        </div>
-    </div>
+    </table>
+</rapid:override>
+
+<rapid:override name="loadJsFile">
+    <script src="/static/js/developer/project.js"></script>
 </rapid:override>
 
 <%@ include file="/base.jsp" %>

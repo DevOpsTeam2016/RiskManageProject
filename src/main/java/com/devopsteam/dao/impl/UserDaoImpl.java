@@ -6,6 +6,8 @@ import com.devopsteam.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by J on 2016/11/8.
  */
@@ -22,5 +24,9 @@ public class UserDaoImpl implements UserDao {
 
     public User find(String username) {
         return (User) baseDao.load(User.class, "username", username);
+    }
+
+    public List<User> findAll() {
+        return baseDao.getAllList(User.class);
     }
 }

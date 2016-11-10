@@ -2,6 +2,7 @@ package com.devopsteam.service;
 
 import com.devopsteam.model.Project;
 import com.devopsteam.model.Risk;
+import com.devopsteam.model.User;
 
 import java.util.List;
 
@@ -21,5 +22,7 @@ public interface DeveloperService {
     public void createRisk(String projectId, String content, String possibility, String effect, String threshold, String creatorName);
 
     public void assignRisk(String riskId, String trackerName);
+
+    public List<User> getManagerList();
 
 }
