@@ -65,7 +65,20 @@
         创建风险
         <span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
 
-    <table class="table">
+    <div style="margin-top: 30px;margin-left: 40px;margin-right: 40px">
+    <table class="table table-striped" >
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>内容</th>
+            <th>可能性</th>
+            <th>影响程度</th>
+            <th>阈值</th>
+            <th>创建者</th>
+            <th>跟踪者</th>
+        </tr>
+        </thead>
+        <tbody>
         <s:iterator value="riskList">
             <tr>
                 <td class="riskId"><s:property value="id"></s:property></td>
@@ -93,6 +106,7 @@
             </tr>
         </s:iterator>
     </table>
+    </div>
 </rapid:override>
 
 <rapid:override name="loadJsFile">

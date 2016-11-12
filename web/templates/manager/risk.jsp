@@ -48,19 +48,32 @@
     <button class="form-control" name="createState" data-toggle="modal" data-target="#createStateModal" style="width: 50%;margin-left: 25%">
         创建风险状态<span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
 
-    <div class="row">
-    <div class="list-group col-sm-4 col-lg-offset-4" style="padding-top: 10px">
+
+    <div style="margin-top: 30px;margin-left: 40px;margin-right: 40px">
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>状态</th>
+                <th>描述</th>
+                <th>风险内容</th>
+                <th>创建时间</th>
+            </tr>
+        </thead>
+        <tbody>
     <s:iterator value="stateList">
-        <a  class="list-group-item">
-        <s:property value="id"></s:property>
-        <s:property value="state"></s:property>
-        <s:property value="description"></s:property>
-        <s:property value="risk.content"></s:property>
-        <s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date>
-        </a>
+        <tr>
+            <td> <s:property value="id"></s:property></td>
+            <td> <s:property value="state"></s:property></td>
+            <td> <s:property value="description"></s:property></td>
+            <td> <s:property value="risk.content"></s:property></td>
+            <td><s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date></td>
+        </tr>
     </s:iterator>
+        </tbody>
+    </table>
     </div>
-    </div>
+
 </rapid:override>
 
 <%@ include file="/base.jsp" %>
