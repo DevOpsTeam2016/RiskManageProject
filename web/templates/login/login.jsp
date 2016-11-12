@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>
 
 <rapid:override name="title">登录</rapid:override>
-
+<rapid:override name="nav"><div></div></rapid:override>
 <rapid:override name="content">
     <div style="width: 50%; margin-left: 25%;margin-top: 200px;padding: 30px 30px 30px 30px" class="panel panel-default">
         <s:form class="form-horizontal" role="form"  name='login' onsubmit="return validateForm( );" action="login" method="POST">
