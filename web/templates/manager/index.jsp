@@ -12,19 +12,47 @@
 <rapid:override name="title">管理者主页</rapid:override>
 
 <rapid:override name="content">
-
-    <div class="row">
-        <div class="list-group col-sm-4 col-sm-offset-4" style="padding-top: 10px">
+    <div style="margin-top: 30px;margin-left: 40px;margin-right: 40px">
+    <table class="table table-striped" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>项目名称</th>
+        <th>内容</th>
+        <th>可能性</th>
+        <th>影响程度</th>
+        <th>阈值</th>
+        <th>创建者</th>
+    </tr>
+    </thead>
+    <tbody>
         <s:iterator value="riskList">
-            <a  class="list-group-item" href="/manage/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
-            <s:property value="project.name"></s:property>
-            <s:property value="content"></s:property>
-            <s:property value="possibility"></s:property>
-            <s:property value="effect"></s:property>
-            <s:property value="threshold"></s:property>
-            <s:property value="creator.name"></s:property>
+            <tr>
+                <td>
+                    <a href="/manage/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
+                </td>
+                <td>
+                    <s:property value="project.name"></s:property>
+                </td>
+                <td>
+                    <s:property value="content"></s:property>
+                </td>
+                <td>
+                    <s:property value="possibility"></s:property>
+                </td>
+                <td>
+                    <s:property value="effect"></s:property>
+                </td>
+                <td>
+                    <s:property value="threshold"></s:property>
+                </td>
+                <td>
+                    <s:property value="creator.name"></s:property>
+                </td>
+            </tr>
         </s:iterator>
-        </div>
+    </tbody>
+    </table>
     </div>
 </rapid:override>
 
