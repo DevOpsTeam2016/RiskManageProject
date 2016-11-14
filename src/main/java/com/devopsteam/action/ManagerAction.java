@@ -42,6 +42,9 @@ public class ManagerAction extends BaseAction {
         managerService.createState(state, description, riskId);
         return "success";
     }
+    public String plan(){
+        return "plan";
+    }
 
     public List<Risk> getRiskList() {
         return riskList;

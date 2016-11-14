@@ -70,6 +70,10 @@
             <result name="risk">/templates/manager/risk.jsp</result>
             <result name="success" type="redirect">/manage/risk</result>
         </action>
+        <action name="plan" class="ManagerAction" method="plan">
+            <result name="plan">/templates/manager/plan.jsp</result>
+
+        </action>
     </package>
 
 </struts>
