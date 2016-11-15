@@ -27,11 +27,11 @@ public class TestServiceImpl implements TestService {
         User manager = new User();
         manager.setPassword(Utils.md5("123"));
         manager.setRole(1);
-        manager.setUsername("manager");
+        manager.setUsername("tracker");
         userDao.save(manager);
         User developer = new User();
         developer.setRole(0);
-        developer.setUsername("developer");
+        developer.setUsername("manager");
         developer.setPassword(Utils.md5("123"));
         userDao.save(developer);
         return "success";

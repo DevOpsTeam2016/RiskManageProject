@@ -42,13 +42,6 @@ public class TrackerAction extends BaseAction {
         trackerService.createState(state, description, riskId);
         return "success";
     }
-    public String plan(){
-        return "plan";
-    }
-
-    public String create_plan(){
-        return "create_plan";
-    }
 
     public List<Risk> getRiskList() {
         return riskList;
