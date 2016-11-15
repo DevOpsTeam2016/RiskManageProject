@@ -22,10 +22,10 @@ public class LoginServiceImpl implements LoginService {
             String role = "";
             switch (user.getRole()) {
                 case 0:
-                    role = "developer";
+                    role = "manager";
                     break;
                 case 1:
-                    role = "manager";
+                    role = "tracker";
                     break;
             }
             return role;

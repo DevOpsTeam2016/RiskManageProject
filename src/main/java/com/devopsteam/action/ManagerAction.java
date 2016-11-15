@@ -1,7 +1,8 @@
 package com.devopsteam.action;
 
+import com.devopsteam.model.Project;
 import com.devopsteam.model.Risk;
-import com.devopsteam.model.State;
+import com.devopsteam.model.User;
 import com.devopsteam.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,37 +18,61 @@ public class ManagerAction extends BaseAction {
     @Autowired
     private ManagerService managerService;
 
+    private List<Project> projectList;
     private List<Risk> riskList;
-    private List<State> stateList;
+    private List<User> trackerList;
+
+    private String message;
 
     public String index() {
-        //显示风险列表
-        riskList = managerService.getRiskList(session.get("username").toString());
+        //显示项目列表
+        projectList = managerService.getProjectList();
         return "index";
     }
 
-    public String risk() {
-        //显示状态列表，创建状态
-        if(request.getMethod().equalsIgnoreCase("get")) {
-            String riskId = request.getParameter("id");
-            if (riskId == null) riskId = session.get("riskId").toString();
-            stateList = managerService.getStateList(riskId);
-            session.put("riskId", riskId);
-            return "risk";
-        }
-        String state = request.getParameter("state");
-        String description = request.getParameter("description");
-        String riskId = request.getParameter("riskId");
-        System.out.println(state + " " + description + " " + riskId);
-        managerService.createState(state, description, riskId);
+    public String createProject() {
+        //创建项目
+        String name = request.getParameter("name");
+        managerService.createProject(name);
         return "success";
     }
-    public String plan(){
-        return "plan";
+
+    public String project() {
+        //显示项目的风险列表、创建风险
+        if(request.getMethod().equalsIgnoreCase("get")) {
+            String projectId = request.getParameter("id");
+            if (projectId == null) projectId = session.get("projectId").toString();
+            riskList = managerService.getRiskList(projectId);
+            trackerList = managerService.getTrackerList();
+            session.put("projectId", projectId);
+            session.put("projectName", managerService.getProjectName(projectId));
+            return "project";
+        }
+        String projectId = request.getParameter("projectId");
+        String content = request.getParameter("content");
+        String possibility = request.getParameter("possibility");
+        String effect = request.getParameter("effect");
+        String threshold = request.getParameter("threshold");
+        System.out.println(projectId + " " + content + " " + possibility + " " + effect + " " + threshold);
+        managerService.createRisk(projectId, content, possibility, effect, threshold, session.get("username").toString());
+        return "success";
     }
 
-    public String create_plan(){
-        return "create_plan";
+    public String assignRisk() {
+        //指派风险给跟踪者
+        String riskId = request.getParameter("riskId");
+        String trackerName = request.getParameter("trackerName");
+        managerService.assignRisk(riskId, trackerName);
+        message = "success";
+        return "success";
+    }
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
     }
 
     public List<Risk> getRiskList() {
@@ -58,11 +83,19 @@ public class ManagerAction extends BaseAction {
         this.riskList = riskList;
     }
 
-    public List<State> getStateList() {
-        return stateList;
+    public List<User> getTrackerList() {
+        return trackerList;
     }
 
-    public void setStateList(List<State> stateList) {
-        this.stateList = stateList;
+    public void setTrackerList(List<User> trackerList) {
+        this.trackerList = trackerList;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

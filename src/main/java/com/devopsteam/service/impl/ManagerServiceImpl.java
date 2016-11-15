@@ -1,15 +1,16 @@
 package com.devopsteam.service.impl;
 
+import com.devopsteam.dao.ProjectDao;
 import com.devopsteam.dao.RiskDao;
-import com.devopsteam.dao.StateDao;
 import com.devopsteam.dao.UserDao;
+import com.devopsteam.model.Project;
 import com.devopsteam.model.Risk;
-import com.devopsteam.model.State;
 import com.devopsteam.model.User;
 import com.devopsteam.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,29 +21,60 @@ import java.util.List;
 public class ManagerServiceImpl implements ManagerService {
 
     @Autowired
-    private RiskDao riskDao;
+    private ProjectDao projectDao;
     @Autowired
-    private StateDao stateDao;
+    private RiskDao riskDao;
     @Autowired
     private UserDao userDao;
 
-    public List<Risk> getRiskList(String username) {
-        User user = userDao.find(username);
-        return user.getRiskListTracked();
+    public List<Project> getProjectList() {
+        return projectDao.findAll();
     }
 
-    public List<State> getStateList(String riskId) {
-        Risk risk = riskDao.find(Integer.parseInt(riskId));
-        return risk.getStateList();
+    public List<Risk> getRiskList(String projectId) {
+        Project project = projectDao.find(Integer.parseInt(projectId));
+        return project.getRiskList();
     }
 
-    public void createState(String state, String description, String riskId) {
-        State state1 = new State();
-        state1.setState(Integer.parseInt(state));
-        state1.setDescription(description);
-        state1.setTimestamp(new Date());
+    public void createRisk(String projectId, String content, String possibility, String effect, String threshold, String creatorName) {
+        Risk risk = new Risk();
+        risk.setContent(content);
+        risk.setPossibility(Integer.parseInt(possibility));
+        risk.setEffect(Integer.parseInt(effect));
+        risk.setThreshold(Integer.parseInt(threshold));
+        risk.setTimestamp(new Date());
+        Project project = projectDao.find(Integer.parseInt(projectId));
+        risk.setProject(project);
+        User creator = userDao.find(creatorName);
+        risk.setCreator(creator);
+        riskDao.save(risk);
+    }
+
+    public void assignRisk(String riskId, String trackerName) {
         Risk risk = riskDao.find(Integer.parseInt(riskId));
-        state1.setRisk(risk);
-        stateDao.save(state1);
+        User tracker = userDao.find(trackerName);
+        risk.setTracker(tracker);
+        riskDao.update(risk);
+    }
+
+    public List<User> getTrackerList() {
+        List<User> allUser = userDao.findAll();
+        List<User> trackerList = new ArrayList<User>();
+        for (User temp: allUser) {
+            if (temp.getRole() == 1) trackerList.add(temp);
+        }
+        return trackerList;
+    }
+
+    public String getProjectName(String projectId) {
+        Project project = projectDao.find(Integer.parseInt(projectId));
+        return project.getName();
+    }
+
+    public void createProject(String name) {
+        Project project = new Project();
+        project.setName(name);
+        project.setTimestamp(new Date());
+        projectDao.save(project);
     }
 }

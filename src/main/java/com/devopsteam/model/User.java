@@ -15,7 +15,7 @@ public class User {
     int id;
     String username;
     String password;
-    int role;  //0: 开发者    1: 管理者
+    int role;  //0: 管理者    1: 跟踪者
     @OneToMany(mappedBy = "creator")
     List<Risk> riskListCreated;
     @OneToMany(mappedBy = "tracker")

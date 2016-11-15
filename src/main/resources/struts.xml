@@ -22,37 +22,7 @@
         </action>
     </package>
     
-    <package name="developer" namespace="/developer" extends="struts-default, json-default">
-        <interceptors>
-            <interceptor name="DeveloperInterceptor" class="com.devopsteam.interceptor.DeveloperInterceptor"/>
-            <interceptor-stack name="DeveloperStack">
-                <interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="DeveloperInterceptor"/>
-            </interceptor-stack>
-        </interceptors>
-        <global-results>
-            <result name="403">/templates/login/403.jsp</result>
-        </global-results>
-        <action name="index" class="DeveloperAction" method="index">
-            <result name="index">/templates/developer/index.jsp</result>
-        </action>
-        <action name="create_project" class="DeveloperAction" method="createProject">
-            <result name="success" type="redirect">/developer/index</result>
-        </action>
-        <action name="project" class="DeveloperAction" method="project">
-            <result name="project">/templates/developer/project.jsp</result>
-            <result name="success" type="redirect">/developer/project</result>
-        </action>
-        <action name="assign_risk" class="DeveloperAction" method="assignRisk">
-            <result name="success" type="json">
-                <param name="includeProperties">
-                    message
-                </param>
-            </result>
-        </action>
-    </package>
-
-    <package name="manage" namespace="/manage" extends="struts-default">
+    <package name="manage" namespace="/manage" extends="struts-default, json-default">
         <interceptors>
             <interceptor name="ManagerInterceptor" class="com.devopsteam.interceptor.ManagerInterceptor"/>
             <interceptor-stack name="ManagerStack">
@@ -65,16 +35,54 @@
         </global-results>
         <action name="index" class="ManagerAction" method="index">
             <result name="index">/templates/manager/index.jsp</result>
+            <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
-        <action name="risk" class="ManagerAction" method="risk">
-            <result name="risk">/templates/manager/risk.jsp</result>
+        <action name="create_project" class="ManagerAction" method="createProject">
+            <result name="success" type="redirect">/manage/index</result>
+            <interceptor-ref name="ManagerStack"></interceptor-ref>
+        </action>
+        <action name="project" class="ManagerAction" method="project">
+            <result name="project">/templates/manage/project.jsp</result>
+            <result name="success" type="redirect">/manage/project</result>
+            <interceptor-ref name="ManagerStack"></interceptor-ref>
+        </action>
+        <action name="assign_risk" class="ManagerAction" method="assignRisk">
+            <result name="success" type="json">
+                <param name="includeProperties">
+                    message
+                </param>
+            </result>
+            <interceptor-ref name="ManagerStack"></interceptor-ref>
+        </action>
+    </package>
+
+    <package name="tracker" namespace="/tracker" extends="struts-default">
+        <interceptors>
+            <interceptor name="TrackerInterceptor" class="com.devopsteam.interceptor.TrackerInterceptor"/>
+            <interceptor-stack name="TrackerStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="TrackerInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="403">/templates/login/403.jsp</result>
+        </global-results>
+        <action name="index" class="TrackerAction" method="index">
+            <result name="index">/templates/tracker/index.jsp</result>
+            <interceptor-ref name="TrackerStack"></interceptor-ref>
+        </action>
+        <action name="risk" class="TrackerAction" method="risk">
+            <result name="risk">/templates/tracker/risk.jsp</result>
             <result name="success" type="redirect">/manage/risk</result>
+            <interceptor-ref name="TrackerStack"></interceptor-ref>
         </action>
-        <action name="plan" class="ManagerAction" method="plan">
-            <result name="plan">/templates/manager/plan.jsp</result>
+        <action name="plan" class="TrackerAction" method="plan">
+            <result name="plan">/templates/tracker/plan.jsp</result>
+            <interceptor-ref name="TrackerStack"></interceptor-ref>
         </action>
-        <action name="create_plan" class="ManagerAction" method="create_plan">
-            <result name="create_plan">/templates/manager/create_plan.jsp</result>
+        <action name="create_plan" class="TrackerAction" method="create_plan">
+            <result name="create_plan">/templates/tracker/create_plan.jsp</result>
+            <interceptor-ref name="TrackerStack"></interceptor-ref>
         </action>
     </package>
 
