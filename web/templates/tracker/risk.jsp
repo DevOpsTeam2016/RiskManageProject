@@ -12,15 +12,7 @@
 <rapid:override name="title">风险</rapid:override>
 
 <rapid:override name="content">
-    <div class="gem_sidebar" style="height: 100%;width: 18%;float: left;padding-left: 30px;padding-right: 5px;margin-top: 50px">
-        <div style="margin-left: -10px;height: 100%">
-            <ul id="main-nav" class="main-nav nav nav-tabs nav-stacked" style="height: 100%">
-                <li id="sidebar1" class="title" ><a href="index"><i class="glyphicon glyphicon-th-large"></i>风险条目</a></li>
-                <li id="sidebar2" class="title" ><a href="plan"><i class="glyphicon glyphicon-fire"></i>风险计划</a></li>
-                <li id="sidebar3" class="stick" ><a href="graphics"><i class="glyphicon glyphicon-cog"></i>统计</a></li>
-            </ul>
-        </div>
-    </div>
+
 
     <!-- Modal -->
     <div id="createStateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -31,7 +23,7 @@
                     <h4 class="modal-title" id="myModalLabel">创建风险状态</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/manage/risk" method="post">
+                    <form action="/tracker/risk" method="post">
                         <input type="hidden" name="riskId" value="<%=session.getAttribute("riskId")%>">
                         <div class="form-group">
                             <label for="state" class="col-sm-2 control-label">状态</label>
@@ -58,7 +50,7 @@
         创建风险状态<span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
 
 
-    <div style=" width: 70%;float: left;margin-top: 30px;margin-left: 40px;margin-right: 40px">
+    <div style=" width: 80%;margin-top: 30px;margin-left: 40px;margin-right: 40px">
     <table class="table table-striped" >
         <thead>
             <tr>

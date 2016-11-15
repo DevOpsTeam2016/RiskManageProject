@@ -17,8 +17,8 @@
         <action name="login" class="LoginAction" method="login">
             <result name="login">/templates/login/login.jsp</result>
             <result name="error" type="redirect">/login</result>
+            <result name="tracker" type="redirect">/tracker/index</result>
             <result name="manager" type="redirect">/manage/index</result>
-            <result name="developer" type="redirect">/developer/index</result>
         </action>
     </package>
     
@@ -42,7 +42,7 @@
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
         <action name="project" class="ManagerAction" method="project">
-            <result name="project">/templates/manage/project.jsp</result>
+            <result name="project">/templates/manager/project.jsp</result>
             <result name="success" type="redirect">/manage/project</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
@@ -53,6 +53,12 @@
                 </param>
             </result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
+        </action>
+        <action name="plan" class="ManagerAction" method="plan">
+            <result name="plan">/templates/manager/plan.jsp</result>
+        </action>
+        <action name="create_plan" class="ManagerAction" method="create_plan">
+            <result name="create_plan">/templates/manager/create_plan.jsp</result>
         </action>
     </package>
 
@@ -76,14 +82,7 @@
             <result name="success" type="redirect">/manage/risk</result>
             <interceptor-ref name="TrackerStack"></interceptor-ref>
         </action>
-        <action name="plan" class="TrackerAction" method="plan">
-            <result name="plan">/templates/tracker/plan.jsp</result>
-            <interceptor-ref name="TrackerStack"></interceptor-ref>
-        </action>
-        <action name="create_plan" class="TrackerAction" method="create_plan">
-            <result name="create_plan">/templates/tracker/create_plan.jsp</result>
-            <interceptor-ref name="TrackerStack"></interceptor-ref>
-        </action>
+
     </package>
 
 </struts>

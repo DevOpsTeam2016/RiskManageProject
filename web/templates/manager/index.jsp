@@ -22,7 +22,7 @@
                     <h4 class="modal-title" id="myModalLabel" >创建项目 </h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/developer/create_project" method="post">
+                    <form action="/manage/create_project" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" placeholder="项目名" required/>
                         </div>
@@ -41,7 +41,7 @@
         <div class="list-group col-sm-2" style="padding-left: 20px;padding-top: 10px">
             <s:iterator value="projectList">
                 <s:property value="id"></s:property>
-                <a  class="list-group-item" href="/developer/project?id=<s:property value="id" ></s:property>">
+                <a  class="list-group-item" href="/manage/project?id=<s:property value="id" ></s:property>">
                     <s:property value="name"></s:property>
                 </a>
                 <s:property value="language"></s:property>

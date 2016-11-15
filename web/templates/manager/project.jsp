@@ -17,7 +17,16 @@
 
 <rapid:override name="content">
 
-
+    <div class="gem_sidebar" style="height: 100%;width: 18%;float: left;padding-left: 30px;padding-right: 5px;margin-top: 50px">
+        <div style="margin-left: -10px;height: 100%">
+            <ul id="main-nav" class="main-nav nav nav-tabs nav-stacked" style="height: 100%">
+                <li id="sidebar1" class="title" ><a href="index"><i class="glyphicon glyphicon-th-large"></i>风险条目</a></li>
+                <li id="sidebar2" class="title" ><a href="plan"><i class="glyphicon glyphicon-fire"></i>风险计划</a></li>
+                <li id="sidebar3" class="stick" ><a href="graphics"><i class="glyphicon glyphicon-cog"></i>统计</a></li>
+            </ul>
+        </div>
+    </div>
+    <div style=" width: 70%;float: left;margin-top: 30px;margin-left: 40px;margin-right: 40px">
     <!-- Modal -->
     <div id="createRiskModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -27,7 +36,7 @@
                     <h4 class="modal-title" id="myModalLabel">创建风险</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/developer/project" method="post">
+                    <form action="/manage/project" method="post">
                         <div class="form-group">
                             <input type="hidden" name="projectId" value="<%=session.getAttribute("projectId")%>">
                             <input type="text" class="form-control" name="content" placeholder="风险内容" required/>
@@ -91,7 +100,7 @@
                     <s:if test="tracker == null">
                         <select name="assignRiskSelect">
                             <option value="">未委派</option>
-                            <s:iterator value="managerList">
+                            <s:iterator value="trackerList">
                                 <option value="<s:property value="username"></s:property>">
                                     <s:property value="username"></s:property>
                                 </option>
@@ -106,6 +115,7 @@
             </tr>
         </s:iterator>
     </table>
+        </div>
     </div>
 </rapid:override>
 
