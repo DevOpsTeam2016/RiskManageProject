@@ -1,6 +1,6 @@
 package com.devopsteam.action;
 
-import com.devopsteam.model.Project;
+import com.devopsteam.model.Plan;
 import com.devopsteam.model.Risk;
 import com.devopsteam.model.User;
 import com.devopsteam.service.ManagerService;
@@ -18,7 +18,7 @@ public class ManagerAction extends BaseAction {
     @Autowired
     private ManagerService managerService;
 
-    private List<Project> projectList;
+    private List<Plan> planList;
     private List<Risk> riskList;
     private List<User> trackerList;
 
@@ -26,35 +26,34 @@ public class ManagerAction extends BaseAction {
 
     public String index() {
         //显示项目列表
-        projectList = managerService.getProjectList();
+        planList = managerService.getPlanList();
         return "index";
     }
 
     public String createProject() {
         //创建项目
         String name = request.getParameter("name");
-        managerService.createProject(name);
+        managerService.createPlan(name);
         return "success";
     }
 
     public String project() {
         //显示项目的风险列表、创建风险
         if(request.getMethod().equalsIgnoreCase("get")) {
-            String projectId = request.getParameter("id");
-            if (projectId == null) projectId = session.get("projectId").toString();
-            riskList = managerService.getRiskList(projectId);
+            String planId = request.getParameter("id");
+            if (planId == null) planId = session.get("planId").toString();
+            riskList = managerService.getRiskList(planId);
             trackerList = managerService.getTrackerList();
-            session.put("projectId", projectId);
-            session.put("projectName", managerService.getProjectName(projectId));
-            return "project";
+            session.put("planId", planId);
+            session.put("planName", managerService.getPlanName(planId));
+            return "plan";
         }
-        String projectId = request.getParameter("projectId");
+        String planId = request.getParameter("planId");
         String content = request.getParameter("content");
         String possibility = request.getParameter("possibility");
         String effect = request.getParameter("effect");
         String threshold = request.getParameter("threshold");
-        System.out.println(projectId + " " + content + " " + possibility + " " + effect + " " + threshold);
-        managerService.createRisk(projectId, content, possibility, effect, threshold, session.get("username").toString());
+        managerService.createRisk(planId, content, possibility, effect, threshold, session.get("username").toString());
         return "success";
     }
 
@@ -75,12 +74,12 @@ public class ManagerAction extends BaseAction {
         return "create_plan";
     }
 
-    public List<Project> getProjectList() {
-        return projectList;
+    public List<Plan> getPlanList() {
+        return planList;
     }
 
-    public void setProjectList(List<Project> projectList) {
-        this.projectList = projectList;
+    public void setPlanList(List<Plan> planList) {
+        this.planList = planList;
     }
 
     public List<Risk> getRiskList() {

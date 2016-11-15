@@ -21,6 +21,7 @@ public class TestServiceImpl implements TestService {
     private UserDao userDao;
 
     public String test() {
+        //创建十几条风险
         Test test = new Test();
         test.setName("test");
         testDao.save(test);

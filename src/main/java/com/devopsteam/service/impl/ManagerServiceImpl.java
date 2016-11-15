@@ -1,9 +1,9 @@
 package com.devopsteam.service.impl;
 
-import com.devopsteam.dao.ProjectDao;
+import com.devopsteam.dao.PlanDao;
 import com.devopsteam.dao.RiskDao;
 import com.devopsteam.dao.UserDao;
-import com.devopsteam.model.Project;
+import com.devopsteam.model.Plan;
 import com.devopsteam.model.Risk;
 import com.devopsteam.model.User;
 import com.devopsteam.service.ManagerService;
@@ -21,19 +21,19 @@ import java.util.List;
 public class ManagerServiceImpl implements ManagerService {
 
     @Autowired
-    private ProjectDao projectDao;
+    private PlanDao planDao;
     @Autowired
     private RiskDao riskDao;
     @Autowired
     private UserDao userDao;
 
-    public List<Project> getProjectList() {
-        return projectDao.findAll();
+    public List<Plan> getProjectList() {
+        return planDao.findAll();
     }
 
-    public List<Risk> getRiskList(String projectId) {
-        Project project = projectDao.find(Integer.parseInt(projectId));
-        return project.getRiskList();
+    public List<Risk> getRiskList(String planId) {
+        Plan plan = planDao.find(Integer.parseInt(planId));
+        return plan.getRiskList();
     }
 
     public void createRisk(String projectId, String content, String possibility, String effect, String threshold, String creatorName) {
@@ -43,7 +43,7 @@ public class ManagerServiceImpl implements ManagerService {
         risk.setEffect(Integer.parseInt(effect));
         risk.setThreshold(Integer.parseInt(threshold));
         risk.setTimestamp(new Date());
-        Project project = projectDao.find(Integer.parseInt(projectId));
+        Plan plan = planDao.find(Integer.parseInt(projectId));
         risk.setProject(project);
         User creator = userDao.find(creatorName);
         risk.setCreator(creator);
@@ -67,7 +67,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     public String getProjectName(String projectId) {
-        Project project = projectDao.find(Integer.parseInt(projectId));
+        Project project = planDao.find(Integer.parseInt(projectId));
         return project.getName();
     }
 
@@ -75,6 +75,6 @@ public class ManagerServiceImpl implements ManagerService {
         Project project = new Project();
         project.setName(name);
         project.setTimestamp(new Date());
-        projectDao.save(project);
+        planDao.save(project);
     }
 }

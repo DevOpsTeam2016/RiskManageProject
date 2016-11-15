@@ -16,10 +16,6 @@ public class User {
     String username;
     String password;
     int role;  //0: 管理者    1: 跟踪者
-    @OneToMany(mappedBy = "creator")
-    List<Risk> riskListCreated;
-    @OneToMany(mappedBy = "tracker")
-    List<Risk> riskListTracked;
 
     public int getId() {
         return id;
@@ -49,23 +45,4 @@ public class User {
         return role;
     }
 
-    public void setRole(int role) {
-        this.role = role;
-    }
-
-    public List<Risk> getRiskListCreated() {
-        return riskListCreated;
-    }
-
-    public void setRiskListCreated(List<Risk> riskListCreated) {
-        this.riskListCreated = riskListCreated;
-    }
-
-    public List<Risk> getRiskListTracked() {
-        return riskListTracked;
-    }
-
-    public void setRiskListTracked(List<Risk> riskListTracked) {
-        this.riskListTracked = riskListTracked;
-    }
 }

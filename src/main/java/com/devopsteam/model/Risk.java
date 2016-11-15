@@ -15,19 +15,8 @@ public class Risk {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String content;
-    int possibility;  //0 1 2递增
-    int effect;  //0 1 2递增
-    int threshold;
-    Date timestamp;
-    @ManyToOne
-    Project project;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "risk")
-    @OrderBy("timestamp desc")
-    List<State> stateList;
-    @ManyToOne
-    User creator;
-    @ManyToOne
-    User tracker;
+    List<RiskPlan> riskPlanList;
 
     public int getId() {
         return id;
@@ -43,69 +32,5 @@ public class Risk {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public int getPossibility() {
-        return possibility;
-    }
-
-    public void setPossibility(int possibility) {
-        this.possibility = possibility;
-    }
-
-    public int getThreshold() {
-        return threshold;
-    }
-
-    public void setThreshold(int threshold) {
-        this.threshold = threshold;
-    }
-
-    public int getEffect() {
-        return effect;
-    }
-
-    public void setEffect(int effect) {
-        this.effect = effect;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public List<State> getStateList() {
-        return stateList;
-    }
-
-    public void setStateList(List<State> stateList) {
-        this.stateList = stateList;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
-
-    public User getTracker() {
-        return tracker;
-    }
-
-    public void setTracker(User tracker) {
-        this.tracker = tracker;
     }
 }
