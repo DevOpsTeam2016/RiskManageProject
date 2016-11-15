@@ -46,44 +46,17 @@
         <button class="form-control" name="createPlan" data-toggle="modal" data-target="#createPlanModal" style="width: 50%;margin-left: 25%">创建风险计划 <span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
 
 
-        <table class="table table-striped" >
+        <table class="table table-striped"  style="padding-top: 20px">
             <thead>
             <tr>
                 <th>编号</th>
-                <th>项目名称</th>
-                <th>内容</th>
-                <th>可能性</th>
-                <th>影响程度</th>
-                <th>阈值</th>
+                <th>计划名称</th>
+                <th>创建时间</th>
                 <th>创建者</th>
             </tr>
             </thead>
             <tbody>
-            <s:iterator value="riskList">
-                <tr>
-                    <td>
-                        <a href="/manage/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
-                    </td>
-                    <td>
-                        <s:property value="project.name"></s:property>
-                    </td>
-                    <td>
-                        <s:property value="content"></s:property>
-                    </td>
-                    <td>
-                        <s:property value="possibility"></s:property>
-                    </td>
-                    <td>
-                        <s:property value="effect"></s:property>
-                    </td>
-                    <td>
-                        <s:property value="threshold"></s:property>
-                    </td>
-                    <td>
-                        <s:property value="creator.name"></s:property>
-                    </td>
-                </tr>
-            </s:iterator>
+
             </tbody>
         </table>
     </div>
