@@ -38,7 +38,7 @@
         <s:iterator value="riskList">
             <tr>
                 <td>
-                    <a href="/manage/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
+                    <a href="/tracker/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
                 </td>
                 <td>
                     <s:property value="project.name"></s:property>

@@ -110,7 +110,7 @@
 </rapid:override>
 
 <rapid:override name="loadJsFile">
-    <script src="/static/js/developer/project.js"></script>
+    <script src="/static/js/manager/project.js"></script>
 </rapid:override>
 
 <%@ include file="/base.jsp" %>
