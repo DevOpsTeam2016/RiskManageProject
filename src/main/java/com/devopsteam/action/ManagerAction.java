@@ -46,6 +46,10 @@ public class ManagerAction extends BaseAction {
         return "plan";
     }
 
+    public String create_plan(){
+        return "create_plan";
+    }
+
     public List<Risk> getRiskList() {
         return riskList;
     }

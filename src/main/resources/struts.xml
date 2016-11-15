@@ -72,7 +72,9 @@
         </action>
         <action name="plan" class="ManagerAction" method="plan">
             <result name="plan">/templates/manager/plan.jsp</result>
-
+        </action>
+        <action name="create_plan" class="ManagerAction" method="create_plan">
+            <result name="create_plan">/templates/manager/create_plan.jsp</result>
         </action>
     </package>
 

@@ -56,7 +56,31 @@
             </tr>
             </thead>
             <tbody>
-
+            <s:iterator value="riskList">
+                <tr>
+                    <td>
+                        <a href="/manage/create_plan">plan1</a>
+                    </td>
+                    <td>
+                        <s:property value="project.name"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="content"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="possibility"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="effect"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="threshold"></s:property>
+                    </td>
+                    <td>
+                        <s:property value="creator.name"></s:property>
+                    </td>
+                </tr>
+            </s:iterator>
             </tbody>
         </table>
     </div>
