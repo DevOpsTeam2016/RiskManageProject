@@ -17,7 +17,7 @@ public class State {
     String description;
     Date timestamp;
     @ManyToOne
-    Risk risk;
+    RiskPlan riskPlan;
 
     public int getId() {
         return Id;
@@ -51,11 +51,11 @@ public class State {
         this.timestamp = timestamp;
     }
 
-    public Risk getRisk() {
-        return risk;
+    public RiskPlan getRiskPlan() {
+        return riskPlan;
     }
 
-    public void setRisk(Risk risk) {
-        this.risk = risk;
+    public void setRiskPlan(RiskPlan riskPlan) {
+        this.riskPlan = riskPlan;
     }
 }

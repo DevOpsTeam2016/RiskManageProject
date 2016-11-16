@@ -1,7 +1,9 @@
 package com.devopsteam.service.impl;
 
+import com.devopsteam.dao.RiskDao;
 import com.devopsteam.dao.TestDao;
 import com.devopsteam.dao.UserDao;
+import com.devopsteam.model.Risk;
 import com.devopsteam.model.Test;
 import com.devopsteam.model.User;
 import com.devopsteam.service.TestService;
@@ -19,6 +21,8 @@ public class TestServiceImpl implements TestService {
     private TestDao testDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private RiskDao riskDao;
 
     public String test() {
         Test test = new Test();
@@ -34,6 +38,12 @@ public class TestServiceImpl implements TestService {
         developer.setUsername("manager");
         developer.setPassword(Utils.md5("123"));
         userDao.save(developer);
+        Risk risk;
+        for (int i = 0; i < 15; i++) {
+            risk = new Risk();
+            risk.setContent("风险" + i);
+            riskDao.save(risk);
+        }
         return "success";
     }
 

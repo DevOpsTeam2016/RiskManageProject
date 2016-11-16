@@ -16,10 +16,12 @@ public class User {
     String username;
     String password;
     int role;  //0: 管理者    1: 跟踪者
-    @OneToMany(mappedBy = "creator")
-    List<Risk> riskListCreated;
-    @OneToMany(mappedBy = "tracker")
-    List<Risk> riskListTracked;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "creator")
+    @OrderBy("timestamp desc")
+    List<RiskPlan> riskPlanListCreated;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "tracker")
+    @OrderBy("timestamp desc")
+    List<RiskPlan> riskPlanListTracked;
 
     public int getId() {
         return id;
@@ -53,19 +55,19 @@ public class User {
         this.role = role;
     }
 
-    public List<Risk> getRiskListCreated() {
-        return riskListCreated;
+    public List<RiskPlan> getRiskPlanListCreated() {
+        return riskPlanListCreated;
     }
 
-    public void setRiskListCreated(List<Risk> riskListCreated) {
-        this.riskListCreated = riskListCreated;
+    public void setRiskPlanListCreated(List<RiskPlan> riskPlanListCreated) {
+        this.riskPlanListCreated = riskPlanListCreated;
     }
 
-    public List<Risk> getRiskListTracked() {
-        return riskListTracked;
+    public List<RiskPlan> getRiskPlanListTracked() {
+        return riskPlanListTracked;
     }
 
-    public void setRiskListTracked(List<Risk> riskListTracked) {
-        this.riskListTracked = riskListTracked;
+    public void setRiskPlanListTracked(List<RiskPlan> riskPlanListTracked) {
+        this.riskPlanListTracked = riskPlanListTracked;
     }
 }
