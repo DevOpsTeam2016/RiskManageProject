@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <button class="form-control" name="createProject" data-toggle="modal" data-target="#createProjectModal" style="width: 50%;margin-left: 25%">创建项目 <span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
+    <button class="form-control" name="createProject" data-toggle="modal" data-target="#createProjectModal" style="width: 50%;margin-left: 25%">创建计划 <span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
 
     <div class="row">
         <div class="list-group col-sm-2" style="padding-left: 20px;padding-top: 10px">
