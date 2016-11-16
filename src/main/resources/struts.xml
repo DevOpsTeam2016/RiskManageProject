@@ -77,8 +77,8 @@
             <result name="index">/templates/tracker/index.jsp</result>
             <interceptor-ref name="TrackerStack"></interceptor-ref>
         </action>
-        <action name="risk" class="TrackerAction" method="risk">
-            <result name="risk">/templates/tracker/risk.jsp</result>
+        <action name="riskplan" class="TrackerAction" method="riskPlan">
+            <result name="riskPlan">/templates/tracker/risk.jsp</result>
             <result name="success" type="redirect">/manage/risk</result>
             <interceptor-ref name="TrackerStack"></interceptor-ref>
         </action>
