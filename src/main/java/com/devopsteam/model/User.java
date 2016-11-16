@@ -16,6 +16,12 @@ public class User {
     String username;
     String password;
     int role;  //0: 管理者    1: 跟踪者
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "creator")
+    @OrderBy("timestamp desc")
+    List<RiskPlan> riskPlanListCreated;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "tracker")
+    @OrderBy("timestamp desc")
+    List<RiskPlan> riskPlanListTracked;
 
     public int getId() {
         return id;
@@ -45,4 +51,23 @@ public class User {
         return role;
     }
 
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    public List<RiskPlan> getRiskPlanListCreated() {
+        return riskPlanListCreated;
+    }
+
+    public void setRiskPlanListCreated(List<RiskPlan> riskPlanListCreated) {
+        this.riskPlanListCreated = riskPlanListCreated;
+    }
+
+    public List<RiskPlan> getRiskPlanListTracked() {
+        return riskPlanListTracked;
+    }
+
+    public void setRiskPlanListTracked(List<RiskPlan> riskPlanListTracked) {
+        this.riskPlanListTracked = riskPlanListTracked;
+    }
 }

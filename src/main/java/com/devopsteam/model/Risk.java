@@ -16,6 +16,7 @@ public class Risk {
     int id;
     String content;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "risk")
+    @OrderBy("timestamp desc")
     List<RiskPlan> riskPlanList;
 
     public int getId() {
@@ -32,5 +33,13 @@ public class Risk {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<RiskPlan> getRiskPlanList() {
+        return riskPlanList;
+    }
+
+    public void setRiskPlanList(List<RiskPlan> riskPlanList) {
+        this.riskPlanList = riskPlanList;
     }
 }

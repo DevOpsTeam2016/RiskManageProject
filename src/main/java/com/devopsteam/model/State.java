@@ -16,6 +16,8 @@ public class State {
     int state;  //0: 未解决    1：解决中   2：已解决
     String description;
     Date timestamp;
+    @ManyToOne
+    RiskPlan riskPlan;
 
     public int getId() {
         return Id;
@@ -47,5 +49,13 @@ public class State {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public RiskPlan getRiskPlan() {
+        return riskPlan;
+    }
+
+    public void setRiskPlan(RiskPlan riskPlan) {
+        this.riskPlan = riskPlan;
     }
 }

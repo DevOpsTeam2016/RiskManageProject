@@ -2,6 +2,7 @@ package com.devopsteam.action;
 
 import com.devopsteam.model.Plan;
 import com.devopsteam.model.Risk;
+import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.User;
 import com.devopsteam.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ManagerAction extends BaseAction {
     private ManagerService managerService;
 
     private List<Plan> planList;
-    private List<Risk> riskList;
+    private List<RiskPlan> riskPlanList;
     private List<User> trackerList;
 
     private String message;
@@ -33,7 +34,10 @@ public class ManagerAction extends BaseAction {
     public String createProject() {
         //创建项目
         String name = request.getParameter("name");
-        managerService.createPlan(name);
+        String type = request.getParameter("type");
+        String language = request.getParameter("language");
+        String people = request.getParameter("People");
+        managerService.createPlan(name, type, language, people);
         return "success";
     }
 
@@ -42,26 +46,26 @@ public class ManagerAction extends BaseAction {
         if(request.getMethod().equalsIgnoreCase("get")) {
             String planId = request.getParameter("id");
             if (planId == null) planId = session.get("planId").toString();
-            riskList = managerService.getRiskList(planId);
+            riskPlanList = managerService.getRiskPlanList(planId);
             trackerList = managerService.getTrackerList();
             session.put("planId", planId);
             session.put("planName", managerService.getPlanName(planId));
             return "plan";
         }
         String planId = request.getParameter("planId");
-        String content = request.getParameter("content");
+        String description = request.getParameter("description");
         String possibility = request.getParameter("possibility");
         String effect = request.getParameter("effect");
         String threshold = request.getParameter("threshold");
-        managerService.createRisk(planId, content, possibility, effect, threshold, session.get("username").toString());
+        managerService.createRiskPlan(planId, description, possibility, effect, threshold, session.get("username").toString());
         return "success";
     }
 
     public String assignRisk() {
         //指派风险给跟踪者
-        String riskId = request.getParameter("riskId");
+        String riskPlanId = request.getParameter("riskPlanId");
         String trackerName = request.getParameter("trackerName");
-        managerService.assignRisk(riskId, trackerName);
+        managerService.assignRiskPlan(riskPlanId, trackerName);
         message = "success";
         return "success";
     }
@@ -82,12 +86,12 @@ public class ManagerAction extends BaseAction {
         this.planList = planList;
     }
 
-    public List<Risk> getRiskList() {
-        return riskList;
+    public List<RiskPlan> getRiskPlanList() {
+        return riskPlanList;
     }
 
-    public void setRiskList(List<Risk> riskList) {
-        this.riskList = riskList;
+    public void setRiskPlanList(List<RiskPlan> riskPlanList) {
+        this.riskPlanList = riskPlanList;
     }
 
     public List<User> getTrackerList() {
