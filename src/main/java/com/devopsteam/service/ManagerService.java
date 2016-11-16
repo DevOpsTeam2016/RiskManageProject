@@ -1,7 +1,7 @@
 package com.devopsteam.service;
 
-import com.devopsteam.model.Project;
-import com.devopsteam.model.Risk;
+import com.devopsteam.model.Plan;
+import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.User;
 
 import java.util.List;
@@ -11,17 +11,17 @@ import java.util.List;
  */
 public interface ManagerService {
 
-    public List<Project> getProjectList();
+    public List<Plan> getPlanList();
 
-    public String getProjectName(String projectId);
+    public String getPlanName(String planId);
 
-    public void createProject(String name);
+    public void createPlan(String name, String type, String language, String people);
 
-    public List<Risk> getRiskList(String projectId);
+    public List<RiskPlan> getRiskPlanList(String planId);
 
-    public void createRisk(String projectId, String content, String possibility, String effect, String threshold, String creatorName);
+    public void createRiskPlan(String planId, String description, String possibility, String effect, String threshold, String creatorName);
 
-    public void assignRisk(String riskId, String trackerName);
+    public void assignRiskPlan(String riskPlanId, String trackerName);
 
     public List<User> getTrackerList();
 

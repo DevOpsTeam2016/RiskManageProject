@@ -1,9 +1,11 @@
 package com.devopsteam.service.impl;
 
 import com.devopsteam.dao.RiskDao;
+import com.devopsteam.dao.RiskPlanDao;
 import com.devopsteam.dao.StateDao;
 import com.devopsteam.dao.UserDao;
 import com.devopsteam.model.Risk;
+import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.State;
 import com.devopsteam.model.User;
 import com.devopsteam.service.TrackerService;
@@ -20,29 +22,29 @@ import java.util.List;
 public class TrackerServiceImpl implements TrackerService {
 
     @Autowired
-    private RiskDao riskDao;
+    private RiskPlanDao riskPlanDao;
     @Autowired
     private StateDao stateDao;
     @Autowired
     private UserDao userDao;
 
-    public List<Risk> getRiskList(String username) {
+    public List<RiskPlan> getRiskPlanList(String username) {
         User user = userDao.find(username);
-        return user.getRiskListTracked();
+        return user.getRiskPlanListTracked();
     }
 
-    public List<State> getStateList(String riskId) {
-        Risk risk = riskDao.find(Integer.parseInt(riskId));
-        return risk.getStateList();
+    public List<State> getStateList(String riskPlanId) {
+        RiskPlan riskPlan = riskPlanDao.find(Integer.parseInt(riskPlanId));
+        return riskPlan.getStateList();
     }
 
-    public void createState(String state, String description, String riskId) {
+    public void createState(String state, String description, String riskPlanId) {
         State state1 = new State();
         state1.setState(Integer.parseInt(state));
         state1.setDescription(description);
         state1.setTimestamp(new Date());
-        Risk risk = riskDao.find(Integer.parseInt(riskId));
-        state1.setRisk(risk);
+        RiskPlan riskPlan = riskPlanDao.find(Integer.parseInt(riskPlanId));
+        state1.setRiskPlan(riskPlan);
         stateDao.save(state1);
     }
 }

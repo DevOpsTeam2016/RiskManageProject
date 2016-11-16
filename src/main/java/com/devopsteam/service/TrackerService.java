@@ -1,6 +1,7 @@
 package com.devopsteam.service;
 
 import com.devopsteam.model.Risk;
+import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.State;
 
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.List;
  */
 public interface TrackerService {
 
-    public List<Risk> getRiskList(String username);
+    public List<RiskPlan> getRiskPlanList(String username);
 
-    public List<State> getStateList(String riskId);
+    public List<State> getStateList(String riskPlanId);
 
-    public void createState(String state, String description, String riskId);
+    public void createState(String state, String description, String riskPlanId);
 
 }

@@ -1,10 +1,12 @@
 package com.devopsteam.service.impl;
 
-import com.devopsteam.dao.ProjectDao;
+import com.devopsteam.dao.PlanDao;
 import com.devopsteam.dao.RiskDao;
+import com.devopsteam.dao.RiskPlanDao;
 import com.devopsteam.dao.UserDao;
-import com.devopsteam.model.Project;
+import com.devopsteam.model.Plan;
 import com.devopsteam.model.Risk;
+import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.User;
 import com.devopsteam.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,40 +23,40 @@ import java.util.List;
 public class ManagerServiceImpl implements ManagerService {
 
     @Autowired
-    private ProjectDao projectDao;
+    private PlanDao planDao;
     @Autowired
-    private RiskDao riskDao;
+    private RiskPlanDao riskPlanDao;
     @Autowired
     private UserDao userDao;
 
-    public List<Project> getProjectList() {
-        return projectDao.findAll();
+    public List<Plan> getPlanList() {
+        return planDao.findAll();
     }
 
-    public List<Risk> getRiskList(String projectId) {
-        Project project = projectDao.find(Integer.parseInt(projectId));
-        return project.getRiskList();
+    public List<RiskPlan> getRiskPlanList(String planId) {
+        Plan plan = planDao.find(Integer.parseInt(planId));
+        return plan.getRiskPlanList();
     }
 
-    public void createRisk(String projectId, String content, String possibility, String effect, String threshold, String creatorName) {
-        Risk risk = new Risk();
-        risk.setContent(content);
-        risk.setPossibility(Integer.parseInt(possibility));
-        risk.setEffect(Integer.parseInt(effect));
-        risk.setThreshold(Integer.parseInt(threshold));
-        risk.setTimestamp(new Date());
-        Project project = projectDao.find(Integer.parseInt(projectId));
-        risk.setProject(project);
+    public void createRiskPlan(String planId, String description, String possibility, String effect, String threshold, String creatorName) {
+        RiskPlan riskPlan = new RiskPlan();
+        riskPlan.setDescription(description);
+        riskPlan.setPossibility(Integer.parseInt(possibility));
+        riskPlan.setEffect(Integer.parseInt(effect));
+        riskPlan.setThreshold(Integer.parseInt(threshold));
+        riskPlan.setTimestamp(new Date());
+        Plan plan = planDao.find(Integer.parseInt(planId));
+        riskPlan.setPlan(plan);
         User creator = userDao.find(creatorName);
-        risk.setCreator(creator);
-        riskDao.save(risk);
+        riskPlan.setCreator(creator);
+        riskPlanDao.save(riskPlan);
     }
 
-    public void assignRisk(String riskId, String trackerName) {
-        Risk risk = riskDao.find(Integer.parseInt(riskId));
+    public void assignRiskPlan(String riskPlanId, String trackerName) {
+        RiskPlan riskPlan = riskPlanDao.find(Integer.parseInt(riskPlanId));
         User tracker = userDao.find(trackerName);
-        risk.setTracker(tracker);
-        riskDao.update(risk);
+        riskPlan.setTracker(tracker);
+        riskPlanDao.update(riskPlan);
     }
 
     public List<User> getTrackerList() {
@@ -66,15 +68,18 @@ public class ManagerServiceImpl implements ManagerService {
         return trackerList;
     }
 
-    public String getProjectName(String projectId) {
-        Project project = projectDao.find(Integer.parseInt(projectId));
-        return project.getName();
+    public String getPlanName(String planId) {
+        Plan plan = planDao.find(Integer.parseInt(planId));
+        return plan.getName();
     }
 
-    public void createProject(String name) {
-        Project project = new Project();
-        project.setName(name);
-        project.setTimestamp(new Date());
-        projectDao.save(project);
+    public void createPlan(String name, String type, String language, String people) {
+        Plan plan = new Plan();
+        plan.setName(name);
+        plan.setType(Integer.parseInt(type));
+        plan.setLanguage(language);
+        plan.setPeople(Integer.parseInt(people));
+        plan.setTimestamp(new Date());
+        planDao.save(plan);
     }
 }

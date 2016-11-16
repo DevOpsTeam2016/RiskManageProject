@@ -1,5 +1,7 @@
 package com.devopsteam.model;
 
+import org.springframework.core.annotation.Order;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
  */
 
 @Entity
-public class Project {
+public class Plan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +21,9 @@ public class Project {
     String language;
     int people;
     Date timestamp;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "project")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "plan")
     @OrderBy("timestamp desc")
-    List<Risk> riskList;
+    List<RiskPlan> riskPlanList;
 
     public int getId() {
         return id;
@@ -71,11 +73,11 @@ public class Project {
         this.timestamp = timestamp;
     }
 
-    public List<Risk> getRiskList() {
-        return riskList;
+    public List<RiskPlan> getRiskPlanList() {
+        return riskPlanList;
     }
 
-    public void setRiskList(List<Risk> riskList) {
-        this.riskList = riskList;
+    public void setRiskPlanList(List<RiskPlan> riskPlanList) {
+        this.riskPlanList = riskPlanList;
     }
 }
