@@ -22,6 +22,42 @@
         </div>
     </div>
     <div style=" width: 70%;float: left;margin-top: 30px;margin-left: 40px;margin-right: 40px">
+        <form action="" method="post">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <div class="col-sm-5">
+                            <label>开始时间：</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="name" placeholder="格式YYYY/MM/DD" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <div class="col-sm-5">
+                            <label>结束时间：</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="name" placeholder="格式YYYY/MM/DD" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-10">
+
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group" style="float: right">
+                        <button type="submit" class="btn btn-primary">查询</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr>
         <div id="main" style="height:400px"></div>
     </div>
 </rapid:override>
