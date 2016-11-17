@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface RiskDao {
 
+    public int getCount();
+
     public Risk find(int id);
 
     public List<Risk> findAll();

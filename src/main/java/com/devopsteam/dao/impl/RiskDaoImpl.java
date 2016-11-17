@@ -17,6 +17,10 @@ public class RiskDaoImpl implements RiskDao {
     @Autowired
     private BaseDao baseDao;
 
+    public int getCount() {
+        return baseDao.getTotalCount(Risk.class);
+    }
+
     public Risk find(int id) {
         return (Risk) baseDao.load(Risk.class, id);
     }

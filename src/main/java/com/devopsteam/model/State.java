@@ -13,7 +13,7 @@ public class State {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int Id;
-    int state;  //0: 未解决    1：解决中   2：已解决
+    int state;  //0: 未解决且未演变成问题    1：未解决但已演变成问题   2：解决中    3：已解决
     String description;
     Date timestamp;
     @ManyToOne

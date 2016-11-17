@@ -1,9 +1,11 @@
 package com.devopsteam.service;
 
 import com.devopsteam.model.Plan;
+import com.devopsteam.model.Risk;
 import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.User;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,5 +26,9 @@ public interface ManagerService {
     public void assignRiskPlan(String riskPlanId, String trackerName);
 
     public List<User> getTrackerList();
+
+    public String[] getMostRecognizedRisk(Date start, Date end);
+
+    public String[] getMostProblemedRisk(Date start, Date end);
 
 }

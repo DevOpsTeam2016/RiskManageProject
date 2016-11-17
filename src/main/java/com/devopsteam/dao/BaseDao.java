@@ -22,7 +22,7 @@ public interface BaseDao {
 
     public List getAllList(Class c);
 
-    public Long getTotalCount(Class c);
+    public int getTotalCount(Class c);
 
     public void delete(Class c, int id);
 

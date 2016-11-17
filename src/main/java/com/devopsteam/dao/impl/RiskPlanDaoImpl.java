@@ -6,6 +6,9 @@ import com.devopsteam.model.RiskPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by motoon on 2016/11/16.
  */
@@ -18,6 +21,10 @@ public class RiskPlanDaoImpl implements RiskPlanDao {
 
     public RiskPlan find(int id) {
         return (RiskPlan) baseDao.load(RiskPlan.class, id);
+    }
+
+    public List<RiskPlan> findWithTime(Date start, Date end) {
+        return baseDao.getListWithTime(RiskPlan.class, "timestamp", start, end);
     }
 
     public void save(RiskPlan riskPlan) {

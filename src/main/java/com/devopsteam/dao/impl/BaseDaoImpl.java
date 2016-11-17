@@ -65,11 +65,11 @@ public class BaseDaoImpl implements BaseDao {
         return list;
     }
 
-    public Long getTotalCount(Class c) {
+    public int getTotalCount(Class c) {
         Session session = getSession();
         String hql = "select count(*) from " + c.getName();
         Long count = (Long) session.createQuery(hql).uniqueResult();
-        return count != null ? count.longValue() : 0;
+        return count != null ? count.intValue() : 0;
     }
 
     public void delete(Class c, int id) {
