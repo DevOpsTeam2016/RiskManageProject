@@ -16,6 +16,13 @@ public class TestAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        return testService.test();
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                testService.test();
+            }
+        };
+        thread.start();
+        return "success";
     }
 }

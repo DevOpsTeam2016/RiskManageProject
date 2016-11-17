@@ -23,6 +23,7 @@ public class ManagerAction extends BaseAction {
     private List<Plan> planList;
     private List<RiskPlan> riskPlanList;
     private List<User> trackerList;
+    private List<Risk> riskList;
 
     private Map<Integer, Risk> mostRecognizedRisk;
     private Map<Integer, Risk> mostProblemedRisk;
@@ -40,7 +41,7 @@ public class ManagerAction extends BaseAction {
         String name = request.getParameter("name");
         String type = request.getParameter("type");
         String language = request.getParameter("language");
-        String people = request.getParameter("People");
+        String people = request.getParameter("people");
         managerService.createPlan(name, type, language, people);
         return "success";
     }
@@ -52,16 +53,18 @@ public class ManagerAction extends BaseAction {
             if (planId == null) planId = session.get("planId").toString();
             riskPlanList = managerService.getRiskPlanList(planId);
             trackerList = managerService.getTrackerList();
+            riskList = managerService.getRiskList();
             session.put("planId", planId);
             session.put("planName", managerService.getPlanName(planId));
             return "plan";
         }
         String planId = request.getParameter("planId");
+        String riskId = request.getParameter("riskId");
         String description = request.getParameter("description");
         String possibility = request.getParameter("possibility");
         String effect = request.getParameter("effect");
         String threshold = request.getParameter("threshold");
-        managerService.createRiskPlan(planId, description, possibility, effect, threshold, session.get("username").toString());
+        managerService.createRiskPlan(planId, riskId, description, possibility, effect, threshold, session.get("username").toString());
         return "success";
     }
 
@@ -97,6 +100,7 @@ public class ManagerAction extends BaseAction {
     }
 
     public String graphics(){
+        if(request.getMethod().equalsIgnoreCase("get")) return "graphics";
         String start = request.getParameter("start");
         String end = request.getParameter("end");
         mostRecognizedRisk = managerService.getMostRecognizedRisk(start, end);
@@ -126,6 +130,14 @@ public class ManagerAction extends BaseAction {
 
     public void setTrackerList(List<User> trackerList) {
         this.trackerList = trackerList;
+    }
+
+    public List<Risk> getRiskList() {
+        return riskList;
+    }
+
+    public void setRiskList(List<Risk> riskList) {
+        this.riskList = riskList;
     }
 
     public Map<Integer, Risk> getMostRecognizedRisk() {

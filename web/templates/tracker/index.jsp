@@ -9,7 +9,7 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>
 
-<rapid:override name="title">管理者主页</rapid:override>
+<rapid:override name="title">跟踪者主页</rapid:override>
 
 <rapid:override name="content">
 
@@ -18,24 +18,25 @@
     <thead>
     <tr>
         <th>编号</th>
+        <th>计划名</th>
         <th>描述</th>
-        <th>时间</th>
         <th>可能性</th>
         <th>影响程度</th>
         <th>阈值</th>
+        <th>创建者</th>
     </tr>
     </thead>
     <tbody>
         <s:iterator value="riskPlanList">
             <tr>
                 <td>
-                    <a href="/tracker/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
+                    <a href="/tracker/riskplan?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
                 </td>
                 <td>
-                    <s:property value="project.name"></s:property>
+                    <s:property value="plan.name"></s:property>
                 </td>
                 <td>
-                    <s:property value="content"></s:property>
+                    <s:property value="description"></s:property>
                 </td>
                 <td>
                     <s:property value="possibility"></s:property>
@@ -47,7 +48,7 @@
                     <s:property value="threshold"></s:property>
                 </td>
                 <td>
-                    <s:property value="creator.name"></s:property>
+                    <s:property value="creator.username"></s:property>
                 </td>
             </tr>
         </s:iterator>

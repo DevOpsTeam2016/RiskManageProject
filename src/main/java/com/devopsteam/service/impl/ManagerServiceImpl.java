@@ -34,7 +34,7 @@ public class ManagerServiceImpl implements ManagerService {
         return plan.getRiskPlanList();
     }
 
-    public void createRiskPlan(String planId, String description, String possibility, String effect, String threshold, String creatorName) {
+    public void createRiskPlan(String planId, String riskId, String description, String possibility, String effect, String threshold, String creatorName) {
         RiskPlan riskPlan = new RiskPlan();
         riskPlan.setDescription(description);
         riskPlan.setPossibility(Integer.parseInt(possibility));
@@ -45,6 +45,8 @@ public class ManagerServiceImpl implements ManagerService {
         riskPlan.setPlan(plan);
         User creator = userDao.find(creatorName);
         riskPlan.setCreator(creator);
+        Risk risk = riskDao.find(Integer.parseInt(riskId));
+        riskPlan.setRisk(risk);
         riskPlanDao.save(riskPlan);
     }
 
@@ -89,6 +91,10 @@ public class ManagerServiceImpl implements ManagerService {
             if (temp.getRole() == 1) trackerList.add(temp);
         }
         return trackerList;
+    }
+
+    public List<Risk> getRiskList() {
+        return riskDao.findAll();
     }
 
     public String getPlanName(String planId) {

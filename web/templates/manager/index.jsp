@@ -9,7 +9,7 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>
 
-<rapid:override name="title">开发者主页</rapid:override>
+<rapid:override name="title">管理者主页</rapid:override>
 
 <rapid:override name="content">
 
@@ -58,9 +58,22 @@
                         <h4 class="modal-title" id="myModalLabel" >创建风险计划 </h4>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
+                        <form action="/manage/create_plan" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" placeholder="计划名" required/>
+                            </div>
+                            <div class="form-group">
+                                <select type="text" class="form-control" name="type" placeholder="规模" required>
+                                    <option value="0">小型</option>
+                                    <option value="1">中型</option>
+                                    <option value="2">大型</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="language" placeholder="语言" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="people" placeholder="人数" required/>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">创建</button>
