@@ -6,12 +6,12 @@ $(document).ready(function() {
 
     $('select[name="assignRiskSelect"]').change(function() {
         var selected = $(this).val();
-        var riskId = $(this).parent().closest('tr').find('.riskId').text();
+        var riskPlanId = $(this).parent().closest('tr').find('.riskPlanId').text();
         $(this).parent().closest('tr').find('.assignItem').replaceWith(selected);
         $.ajax({
             type: "POST",
-            url: "/developer/assign_risk",
-            data: {"riskId": riskId, "trackerName": selected},
+            url: "/manage/assign_risk",
+            data: {"riskPlanId": riskPlanId, "trackerName": selected},
             dataType: "json",
             success: function() {
                 location.reload();

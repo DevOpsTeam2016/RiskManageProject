@@ -23,14 +23,15 @@
                     <h4 class="modal-title" id="myModalLabel">创建风险状态</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/tracker/risk" method="post">
-                        <input type="hidden" name="riskId" value="<%=session.getAttribute("riskId")%>">
+                    <form action="/tracker/riskplan" method="post">
+                        <input type="hidden" name="riskPlanId" value="<%=session.getAttribute("riskPlanId")%>">
                         <div class="form-group">
                             <label for="state" class="col-sm-2 control-label">状态</label>
                             <select class="form-control" id="state" name="state" required>
-                                <option value="0">未解决</option>
-                                <option value="1">解决中</option>
-                                <option value="2">已解决</option>
+                                <option value="0">未解决且未演变成问题</option>
+                                <option value="1">未解决但已演变成问题</option>
+                                <option value="2">解决中</option>
+                                <option value="3">已解决</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -57,7 +58,6 @@
                 <th>编号</th>
                 <th>状态</th>
                 <th>描述</th>
-                <th>风险内容</th>
                 <th>创建时间</th>
             </tr>
         </thead>
@@ -67,7 +67,6 @@
             <td> <s:property value="id"></s:property></td>
             <td> <s:property value="state"></s:property></td>
             <td> <s:property value="description"></s:property></td>
-            <td> <s:property value="risk.content"></s:property></td>
             <td><s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date></td>
         </tr>
     </s:iterator>

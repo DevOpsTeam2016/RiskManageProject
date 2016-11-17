@@ -41,9 +41,9 @@
             <result name="success" type="redirect">/manage/index</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
-        <action name="plan" class="ManagerAction" method="project">
-            <result name="plan">/templates/manager/project.jsp</result>
-            <result name="success" type="redirect">/manage/project</result>
+        <action name="plan" class="ManagerAction" method="plan">
+            <result name="plan">/templates/manager/plan.jsp</result>
+            <result name="success" type="redirect">/manage/plan</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
         <action name="assign_risk" class="ManagerAction" method="assignRisk">
@@ -85,7 +85,7 @@
         </action>
         <action name="riskplan" class="TrackerAction" method="riskPlan">
             <result name="riskPlan">/templates/tracker/risk.jsp</result>
-            <result name="success" type="redirect">/manage/risk</result>
+            <result name="success" type="redirect">/tracker/riskplan</result>
             <interceptor-ref name="TrackerStack"></interceptor-ref>
         </action>
 

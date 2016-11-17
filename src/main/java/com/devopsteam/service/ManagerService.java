@@ -22,7 +22,7 @@ public interface ManagerService {
 
     public List<RiskPlan> getRiskPlanList(String planId);
 
-    public void createRiskPlan(String planId, String description, String possibility, String effect, String threshold, String creatorName);
+    public void createRiskPlan(String planId, String riskId, String description, String possibility, String effect, String threshold, String creatorName);
 
     public void importRiskPlan(String planId, String[] riskIds, String creator);
 
@@ -33,6 +33,8 @@ public interface ManagerService {
     public void assignRiskPlan(String riskPlanId, String trackerName);
 
     public List<User> getTrackerList();
+
+    public List<Risk> getRiskList();
 
     public Map<Integer, Risk> getMostRecognizedRisk(String start, String end);
 

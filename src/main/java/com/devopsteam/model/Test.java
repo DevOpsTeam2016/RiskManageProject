@@ -1,8 +1,6 @@
 package com.devopsteam.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by J on 2016/11/3.
@@ -13,15 +11,9 @@ import javax.persistence.Table;
 public class Test {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name;
-
-    public Test() {}
-
-    public Test(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public int getId() {
         return id;

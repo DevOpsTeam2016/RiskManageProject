@@ -5,6 +5,6 @@ package com.devopsteam.service;
  */
 public interface TestService {
 
-    public String test();
+    public void test();
 
 }
