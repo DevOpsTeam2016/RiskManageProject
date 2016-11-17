@@ -16,7 +16,7 @@
         <div style="margin-left: -10px;height: 100%">
             <ul id="main-nav" class="main-nav nav nav-tabs nav-stacked" style="height: 100%">
                 <li id="sidebar1" class="title" ><a href="index"><i class="glyphicon glyphicon-th-large"></i>风险条目</a></li>
-                <li id="sidebar2" class="title" ><a href="plan"><i class="glyphicon glyphicon-fire"></i>风险计划</a></li>
+                <li id="sidebar2" class="title" ><a href="create_plan"><i class="glyphicon glyphicon-fire"></i>风险计划</a></li>
                 <li id="sidebar3" class="stick" ><a href="graphics"><i class="glyphicon glyphicon-cog"></i>统计</a></li>
             </ul>
         </div>

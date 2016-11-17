@@ -40,7 +40,7 @@
         <div style="margin-left: -10px;height: 100%">
             <ul id="main-nav" class="main-nav nav nav-tabs nav-stacked" style="height: 100%">
                 <li id="sidebar1" class="title" ><a href="index"><i class="glyphicon glyphicon-th-large"></i>风险条目</a></li>
-                <li id="sidebar2" class="title" ><a href="plan"><i class="glyphicon glyphicon-fire"></i>风险计划</a></li>
+                <li id="sidebar2" class="title" ><a href="create_plan"><i class="glyphicon glyphicon-fire"></i>风险计划</a></li>
                 <li id="sidebar3" class="stick" ><a href="graphics"><i class="glyphicon glyphicon-cog"></i>统计</a></li>
             </ul>
         </div>
@@ -50,9 +50,32 @@
 
         <%--</div>--%>
     <div style=" width: 70%;float: left;margin-top: 30px;margin-left: 40px;margin-right: 40px">
+        <div id="createPlanModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel" >创建风险计划 </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" placeholder="计划名" required/>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">创建</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="form-control" name="createPlan" data-toggle="modal" data-target="#createPlanModal" style="width: 50%;margin-left: 25%">创建风险计划 <span class="glyphicon glyphicon-plus" style="color: deepskyblue"></span></button>
+
         <s:iterator value="planList">
             <s:property value="id"></s:property>
-            <a  class="list-group-item" href="/manage/project?id=<s:property value="id" ></s:property>">
+            <a  class="list-group-item" href="/manage/plan?id=<s:property value="id" ></s:property>">
                 <s:property value="name"></s:property>
             </a>
             <s:property value="language"></s:property>
