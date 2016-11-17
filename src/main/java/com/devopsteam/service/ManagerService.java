@@ -7,6 +7,7 @@ import com.devopsteam.model.User;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by J on 2016/11/8.
@@ -23,12 +24,18 @@ public interface ManagerService {
 
     public void createRiskPlan(String planId, String description, String possibility, String effect, String threshold, String creatorName);
 
+    public void importRiskPlan(String planId, String[] riskIds, String creator);
+
+    public void updateRiskPlan(String riskPlanId, String description, String possibility, String effect, String threshold);
+
+    public void deleteRiskPlan(String riskPlanId);
+
     public void assignRiskPlan(String riskPlanId, String trackerName);
 
     public List<User> getTrackerList();
 
-    public String[] getMostRecognizedRisk(Date start, Date end);
+    public Map<Integer, Risk> getMostRecognizedRisk(String start, String end);
 
-    public String[] getMostProblemedRisk(Date start, Date end);
+    public Map<Integer, Risk> getMostProblemedRisk(String start, String end);
 
 }

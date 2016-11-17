@@ -34,4 +34,8 @@ public class RiskPlanDaoImpl implements RiskPlanDao {
     public void update(RiskPlan riskPlan) {
         baseDao.update(riskPlan);
     }
+
+    public void delete(int id) {
+        baseDao.delete(RiskPlan.class, id);
+    }
 }

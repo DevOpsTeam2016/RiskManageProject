@@ -1,6 +1,9 @@
 package com.devopsteam.service.impl;
 
 import java.security.MessageDigest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by J on 2016/11/8.
@@ -24,6 +27,16 @@ public class Utils {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static Date convertToDate(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

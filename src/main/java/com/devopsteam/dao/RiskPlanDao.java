@@ -18,4 +18,6 @@ public interface RiskPlanDao {
 
     public void update(RiskPlan riskPlan);
 
+    public void delete(int id);
+
 }

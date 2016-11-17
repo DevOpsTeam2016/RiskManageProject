@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by J on 2016/11/8.
@@ -22,6 +23,9 @@ public class ManagerAction extends BaseAction {
     private List<Plan> planList;
     private List<RiskPlan> riskPlanList;
     private List<User> trackerList;
+
+    private Map<Integer, Risk> mostRecognizedRisk;
+    private Map<Integer, Risk> mostProblemedRisk;
 
     private String message;
 
@@ -75,23 +79,28 @@ public class ManagerAction extends BaseAction {
         String operation = request.getParameter("operation");
         if (operation.equals("import")) {
             String planId = request.getParameter("planId");
-            String risks = request.getParameter("risks");
-            //.....................................
+            String riskIds = request.getParameter("riskIds");
+            String[] riskIdList = riskIds.split(",");
+            managerService.importRiskPlan(planId, riskIdList, session.get("username").toString());
         } else if (operation.equals("update")) {
             String riskPlanId = request.getParameter("riskPlanId");
             String description = request.getParameter("description");
             String possibility = request.getParameter("possibility");
             String effect = request.getParameter("effect");
             String threshold = request.getParameter("threshold");
-            //......................................
+            managerService.updateRiskPlan(riskPlanId, description, possibility, effect, threshold);
         } else if (operation.equals("delete")) {
             String riskPlanId = request.getParameter("riskPlanId");
-            //......................................
+            managerService.deleteRiskPlan(riskPlanId);
         }
         return "success";
     }
 
     public String graphics(){
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        mostRecognizedRisk = managerService.getMostRecognizedRisk(start, end);
+        mostProblemedRisk = managerService.getMostProblemedRisk(start, end);
         return "graphics";
     }
 
@@ -117,6 +126,22 @@ public class ManagerAction extends BaseAction {
 
     public void setTrackerList(List<User> trackerList) {
         this.trackerList = trackerList;
+    }
+
+    public Map<Integer, Risk> getMostRecognizedRisk() {
+        return mostRecognizedRisk;
+    }
+
+    public void setMostRecognizedRisk(Map<Integer, Risk> mostRecognizedRisk) {
+        this.mostRecognizedRisk = mostRecognizedRisk;
+    }
+
+    public Map<Integer, Risk> getMostProblemedRisk() {
+        return mostProblemedRisk;
+    }
+
+    public void setMostProblemedRisk(Map<Integer, Risk> mostProblemedRisk) {
+        this.mostProblemedRisk = mostProblemedRisk;
     }
 
     public String getMessage() {

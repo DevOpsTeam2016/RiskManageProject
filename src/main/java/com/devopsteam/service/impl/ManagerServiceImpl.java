@@ -6,9 +6,7 @@ import com.devopsteam.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by J on 2016/11/8.
@@ -50,6 +48,33 @@ public class ManagerServiceImpl implements ManagerService {
         riskPlanDao.save(riskPlan);
     }
 
+    public void importRiskPlan(String planId, String[] riskIds, String creator) {
+        Plan plan = planDao.find(Integer.parseInt(planId));
+        User user = userDao.find(creator);
+        for (String temp: riskIds) {
+            Risk risk = riskDao.find(Integer.parseInt(temp));
+            RiskPlan riskPlan = new RiskPlan();
+            riskPlan.setTimestamp(new Date());
+            riskPlan.setPlan(plan);
+            riskPlan.setRisk(risk);
+            riskPlan.setCreator(user);
+            riskPlanDao.save(riskPlan);
+        }
+    }
+
+    public void updateRiskPlan(String riskPlanId, String description, String possibility, String effect, String threshold) {
+        RiskPlan riskPlan = riskPlanDao.find(Integer.parseInt(riskPlanId));
+        riskPlan.setDescription(description);
+        riskPlan.setPossibility(Integer.parseInt(possibility));
+        riskPlan.setEffect(Integer.parseInt(effect));
+        riskPlan.setThreshold(Integer.parseInt(threshold));
+        riskPlanDao.update(riskPlan);
+    }
+
+    public void deleteRiskPlan(String riskPlanId) {
+        riskPlanDao.delete(Integer.parseInt(riskPlanId));
+    }
+
     public void assignRiskPlan(String riskPlanId, String trackerName) {
         RiskPlan riskPlan = riskPlanDao.find(Integer.parseInt(riskPlanId));
         User tracker = userDao.find(trackerName);
@@ -81,46 +106,30 @@ public class ManagerServiceImpl implements ManagerService {
         planDao.save(plan);
     }
 
-    //获取特定时间段被识别最多的风险, 返回名字与数量
-    public String[] getMostRecognizedRisk(Date start, Date end) {
-        List<RiskPlan> allRiskPlan = riskPlanDao.findWithTime(start, end);
+    //获取特定时间段被识别最多的风险, 返回风险与数量
+    public Map<Integer, Risk> getMostRecognizedRisk(String start, String end) {
+        List<RiskPlan> allRiskPlan = riskPlanDao.findWithTime(Utils.convertToDate(start), Utils.convertToDate(end));
         int[] riskIds = new int[riskDao.getCount()];
         for (RiskPlan temp: allRiskPlan) riskIds[temp.getRisk().getId()] ++;
-        int max = 0;
-        int maxIndex = 0;
+        Map<Integer, Risk> map = new TreeMap<Integer, Risk>();
+        List<Risk> riskList = riskDao.findAll();
         for (int i = 0; i < riskIds.length; i++) {
-            if (max < riskIds[i]) {
-                max = riskIds[i];
-                maxIndex = i;
-            }
+            map.put(riskIds[i], riskList.get(i));
         }
-        String[] toReturn = new String[3];
-        Risk risk = riskDao.find(maxIndex);
-        toReturn[0] = Integer.toString(risk.getId());
-        toReturn[1] = risk.getContent();
-        toReturn[2] = Integer.toString(max);
-        return toReturn;
+        return map;
     }
 
-    public String[] getMostProblemedRisk(Date start, Date end) {
-        List<State> allState = stateDao.findStateWithTime(start, end);
+    public Map<Integer, Risk> getMostProblemedRisk(String start, String end) {
+        List<State> allState = stateDao.findStateWithTime(Utils.convertToDate(start), Utils.convertToDate(end));
         int[] riskIds = new int[riskDao.getCount()];
         for (State temp: allState) {
             if (temp.getState() == 1) riskIds[temp.getRiskPlan().getRisk().getId()]++;
         }
-        int max = 0;
-        int maxIndex = 0;
+        Map<Integer, Risk> map = new TreeMap<Integer, Risk>();
+        List<Risk> riskList = riskDao.findAll();
         for (int i = 0; i < riskIds.length; i++) {
-            if (max < riskIds[i]) {
-                max = riskIds[i];
-                maxIndex = i;
-            }
+            map.put(riskIds[i], riskList.get(i));
         }
-        String[] toReturn = new String[3];
-        Risk risk = riskDao.find(maxIndex);
-        toReturn[0] = Integer.toString(risk.getId());
-        toReturn[1] = risk.getContent();
-        toReturn[2] = Integer.toString(max);
-        return toReturn;
+        return map;
     }
 }
