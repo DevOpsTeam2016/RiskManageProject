@@ -37,12 +37,12 @@
             <result name="index">/templates/manager/index.jsp</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
-        <action name="create_project" class="ManagerAction" method="createProject">
+        <action name="create_plan" class="ManagerAction" method="createPlan">
             <result name="success" type="redirect">/manage/index</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
-        <action name="project" class="ManagerAction" method="project">
-            <result name="project">/templates/manager/project.jsp</result>
+        <action name="plan" class="ManagerAction" method="project">
+            <result name="plan">/templates/manager/project.jsp</result>
             <result name="success" type="redirect">/manage/project</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
@@ -54,14 +54,17 @@
             </result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
-        <action name="plan" class="ManagerAction" method="plan">
-            <result name="plan">/templates/manager/plan.jsp</result>
-        </action>
-        <action name="create_plan" class="ManagerAction" method="create_plan">
-            <result name="create_plan">/templates/manager/create_plan.jsp</result>
+        <action name="risk" class="ManagerAction" method="risk">
+            <result name="success" type="json">
+                <param name="includeProperties">
+                    message
+                </param>
+            </result>
+            <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
         <action name="graphics" class="ManagerAction" method="graphics">
             <result name="graphics">/templates/manager/graphics.jsp</result>
+            <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
     </package>
 

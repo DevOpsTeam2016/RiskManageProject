@@ -31,8 +31,8 @@ public class ManagerAction extends BaseAction {
         return "index";
     }
 
-    public String createProject() {
-        //创建项目
+    public String createPlan() {
+        //创建计划
         String name = request.getParameter("name");
         String type = request.getParameter("type");
         String language = request.getParameter("language");
@@ -41,8 +41,8 @@ public class ManagerAction extends BaseAction {
         return "success";
     }
 
-    public String project() {
-        //显示项目的风险列表、创建风险
+    public String plan() {
+        //显示计划的风险列表、创建风险
         if(request.getMethod().equalsIgnoreCase("get")) {
             String planId = request.getParameter("id");
             if (planId == null) planId = session.get("planId").toString();
@@ -70,13 +70,27 @@ public class ManagerAction extends BaseAction {
         return "success";
     }
 
-    public String plan(){
-        return "plan";
+    public String risk() {
+        //风险的删改，导入
+        String operation = request.getParameter("operation");
+        if (operation.equals("import")) {
+            String planId = request.getParameter("planId");
+            String risks = request.getParameter("risks");
+            //.....................................
+        } else if (operation.equals("update")) {
+            String riskPlanId = request.getParameter("riskPlanId");
+            String description = request.getParameter("description");
+            String possibility = request.getParameter("possibility");
+            String effect = request.getParameter("effect");
+            String threshold = request.getParameter("threshold");
+            //......................................
+        } else if (operation.equals("delete")) {
+            String riskPlanId = request.getParameter("riskPlanId");
+            //......................................
+        }
+        return "success";
     }
 
-    public String create_plan(){
-        return "create_plan";
-    }
     public String graphics(){
         return "graphics";
     }
