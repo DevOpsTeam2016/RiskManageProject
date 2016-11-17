@@ -77,6 +77,9 @@ public class ManagerAction extends BaseAction {
     public String create_plan(){
         return "create_plan";
     }
+    public String graphics(){
+        return "graphics";
+    }
 
     public List<Plan> getPlanList() {
         return planList;

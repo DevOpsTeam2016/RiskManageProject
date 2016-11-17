@@ -60,6 +60,9 @@
         <action name="create_plan" class="ManagerAction" method="create_plan">
             <result name="create_plan">/templates/manager/create_plan.jsp</result>
         </action>
+        <action name="graphics" class="ManagerAction" method="graphics">
+            <result name="graphics">/templates/manager/graphics.jsp</result>
+        </action>
     </package>
 
     <package name="tracker" namespace="/tracker" extends="struts-default">

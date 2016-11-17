@@ -50,17 +50,15 @@
 
         <%--</div>--%>
     <div style=" width: 70%;float: left;margin-top: 30px;margin-left: 40px;margin-right: 40px">
-        <s:iterator value="riskPlanList">
+        <s:iterator value="planList">
             <s:property value="id"></s:property>
             <a  class="list-group-item" href="/manage/project?id=<s:property value="id" ></s:property>">
                 <s:property value="name"></s:property>
             </a>
-            <s:property value="description"></s:property>
+            <s:property value="language"></s:property>
             <s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date>
-            <s:property value="possibility"></s:property>
-            <s:property value="effect"></s:property>
-            <s:property value="threshold"></s:property>
-
+            <s:property value="people"></s:property>
+            <s:property value="type"></s:property>
         </s:iterator>
     </div>
     <%--<div class="jumbotron col-sm-8 col-sm-offset-1" style="margin-top:60px;padding-left:30px">--%>
