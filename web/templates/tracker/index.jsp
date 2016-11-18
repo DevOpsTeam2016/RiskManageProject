@@ -30,19 +30,25 @@
         <s:iterator value="riskPlanList">
             <tr>
                 <td>
-                    <a href="/tracker/riskplan?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
+                    <s:property value="id"></s:property>
                 </td>
                 <td>
-                    <s:property value="plan.name"></s:property>
+                    <a  class="list-group-item" href="/tracker/riskplan?id=<s:property value="id" ></s:property>">
+                        <s:property value="plan.name"></s:property>
+                    </a>
                 </td>
                 <td>
                     <s:property value="description"></s:property>
                 </td>
                 <td>
-                    <s:property value="possibility"></s:property>
+                    <s:if test="possibility==0">低</s:if>
+                    <s:elseif test="possibility==1">中</s:elseif>
+                    <s:else>高</s:else>
                 </td>
                 <td>
-                    <s:property value="effect"></s:property>
+                    <s:if test="effect==0">低</s:if>
+                    <s:elseif test="effect==1">中</s:elseif>
+                    <s:else>高</s:else>
                 </td>
                 <td>
                     <s:property value="threshold"></s:property>

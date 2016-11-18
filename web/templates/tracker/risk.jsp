@@ -65,7 +65,12 @@
     <s:iterator value="stateList">
         <tr>
             <td> <s:property value="id"></s:property></td>
-            <td> <s:property value="state"></s:property></td>
+            <td>
+                <s:if test="state==0">未解决且未演变成问题</s:if>
+                <s:elseif test="state==1">未解决但已演变成问题</s:elseif>
+                <s:elseif test="state==2">解决中</s:elseif>
+                <s:else>已解决</s:else>
+            </td>
             <td> <s:property value="description"></s:property></td>
             <td><s:date name="timestamp" format="yyyy-MM-dd HH:mm:ss"></s:date></td>
         </tr>

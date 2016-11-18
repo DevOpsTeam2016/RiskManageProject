@@ -138,10 +138,18 @@
                         <h4 class="modal-title" id="myModalLabel">创建风险</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="/manage/project" method="post">
+                        <form action="/manage/plan" method="post">
                             <div class="form-group">
-                                <input type="hidden" name="projectId" value="<%=session.getAttribute("projectId")%>">
-                                <input type="text" class="form-control" name="content" placeholder="风险内容" required/>
+                                <input type="hidden" name="planId" value="<%=session.getAttribute("planId")%>">
+                                <input type="text" class="form-control" name="description" placeholder="风险内容" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="riskId" class="col-sm-2 control-label">风险名称</label>
+                                <select class="form-control" id="riskId" name="riskId" required>
+                                    <s:iterator value="riskList">
+                                        <option value="<s:property value="id"></s:property>"><s:property value="content"></s:property></option>
+                                    </s:iterator>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="possibility" class="col-sm-2 control-label">可能性</label>
@@ -190,13 +198,21 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel2">模态框（Modal）标题</h4>
+                            <h4 class="modal-title" id="myModalLabel2">修改风险</h4>
                         </div>
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
                                     <label>编号</label>
                                     <input type="text" class="form-control" name="content" placeholder="" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <label>风险名称</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>风险内容</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" required/>
                                 </div>
                                 <div class="form-group">
                                     <label>可能性</label>
@@ -247,6 +263,8 @@
                     <input type="checkbox" name="inlineRadioOptions" class="checkAll_index" value="">
                 </th>
                 <th>编号</th>
+                <th>风险名称</th>
+                <th>风险内容</th>
                 <th>可能性</th>
                 <th>影响程度</th>
                 <th>阈值</th>
@@ -261,9 +279,19 @@
                 <td>
                     <input type="checkbox" name="inlineRadioOptions"  class="checkOne_index" value="">
                 </td>
-                <td class="riskId"><s:property value="id"></s:property></td>
-                <td><s:property value="possibility"></s:property></td>
-                <td><s:property value="effect"></s:property></td>
+                <td class="riskPlanId"><s:property value="id"></s:property></td>
+                <td><s:property value="risk.content"></s:property> </td>
+                <td><s:property value="description"></s:property> </td>
+                <td>
+                    <s:if test="possibility==0">低</s:if>
+                    <s:elseif test="possibility==1">中</s:elseif>
+                    <s:else>高</s:else>
+                </td>
+                <td>
+                    <s:if test="effect==0">低</s:if>
+                    <s:elseif test="effect==1">中</s:elseif>
+                    <s:else>高</s:else>
+                </td>
                 <td><s:property value="threshold"></s:property></td>
                 <td><s:property value="creator.username"></s:property></td>
                 <td class="assignItem">
@@ -292,6 +320,7 @@
 <rapid:override name="loadJsFile">
     <script src="/static/js/manager/checkAll.js"></script>
     <script src="/static/js/manager/modify.js"></script>
+    <script src="/static/js/manager/plan.js"></script>
 </rapid:override>
 
 <%@ include file="/base.jsp" %>
