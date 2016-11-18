@@ -201,61 +201,55 @@
                             <h4 class="modal-title" id="myModalLabel2">修改风险</h4>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form action="/manage/risk" method="post" >
                                 <div class="form-group">
+                                    <input type="hidden" name="operation" value="update" />
                                     <label>编号</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" disabled/>
+                                    <input type="text" class="form-control" name="riskPlanId" disabled/>
                                 </div>
                                 <div class="form-group">
                                     <label>风险名称</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                    <input type="text" class="form-control" name="riskName" disabled/>
                                 </div>
                                 <div class="form-group">
                                     <label>风险内容</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                    <input type="text" class="form-control" name="description" required/>
                                 </div>
                                 <div class="form-group">
-                                    <label>可能性</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                    <label for="possibility" class="col-sm-2 control-label">可能性</label>
+                                    <select class="form-control" id="possibility2" name="possibility" required>
+                                        <option value="0">低</option>
+                                        <option value="1">中</option>
+                                        <option value="2">高</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>影响程度</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                    <label for="effect" class="col-sm-2 control-label">影响程度</label>
+                                    <select class="form-control" id="effect2" name="effect" required>
+                                        <option value="0">低</option>
+                                        <option value="1">中</option>
+                                        <option value="2">高</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>阈值</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                    <input type="text" class="form-control" name="threshold" required/>
                                 </div>
                                 <div class="form-group">
                                     <label>创建者</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" disabled/>
+                                    <input type="text" class="form-control" name="creator" disabled/>
                                 </div>
                                 <div class="form-group">
-                                    <label>跟踪者</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                    <button type="submit" class="btn btn-primary">修改</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                 </div>
-                                <div class="form-group">
-                                    <label>时间</label>
-                                    <input type="text" class="form-control" name="content" placeholder="" disabled/>
-                                </div>
-
-
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-primary">提交更改</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
 
     <div style="margin-top: 30px">
-        <div style="float:right">
-            <button type="button" class="btn btn-success" id="modify" data-toggle="modal" data-target="#modifyModal">修改</button>
-            <button type="button" class="btn btn-danger" id="delete">删除</button>
-        </div>
-
         <table class="table table-striped" >
             <thead>
             <tr>
@@ -271,6 +265,8 @@
                 <th>创建者</th>
                 <th>跟踪者</th>
                 <th>时间</th>
+                <th>修改</th>
+                <th>删除</th>
             </tr>
             </thead>
             <tbody>
@@ -280,20 +276,20 @@
                     <input type="checkbox" name="inlineRadioOptions"  class="checkOne_index" value="">
                 </td>
                 <td class="riskPlanId"><s:property value="id"></s:property></td>
-                <td><s:property value="risk.content"></s:property> </td>
-                <td><s:property value="description"></s:property> </td>
-                <td>
+                <td class="riskName"><s:property value="risk.content"></s:property> </td>
+                <td class="description"><s:property value="description"></s:property> </td>
+                <td class="possibility">
                     <s:if test="possibility==0">低</s:if>
                     <s:elseif test="possibility==1">中</s:elseif>
                     <s:else>高</s:else>
                 </td>
-                <td>
+                <td class="effect">
                     <s:if test="effect==0">低</s:if>
                     <s:elseif test="effect==1">中</s:elseif>
                     <s:else>高</s:else>
                 </td>
-                <td><s:property value="threshold"></s:property></td>
-                <td><s:property value="creator.username"></s:property></td>
+                <td class="threshold"><s:property value="threshold"></s:property></td>
+                <td class="creator"><s:property value="creator.username"></s:property></td>
                 <td class="assignItem">
                     <s:if test="tracker == null">
                         <select name="assignRiskSelect">
@@ -310,6 +306,12 @@
                     </s:else>
                 </td>
                 <td><s:property value="timestamp"></s:property></td>
+                <td>
+                    <button type="button" class="updateRisk btn btn-success"  data-toggle="modal" data-target="#modifyModal">修改</button>
+                </td>
+                <td>
+                    <button type="button" class="deleteRisk btn btn-danger">删除</button>
+                </td>
             </tr>
             </s:iterator>
         </table>
