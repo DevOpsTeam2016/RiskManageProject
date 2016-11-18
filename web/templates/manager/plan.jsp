@@ -184,13 +184,62 @@
             </div>
         </div>
 
+            <!-- 修改模态框（Modal） -->
+            <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel2">模态框（Modal）标题</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label>编号</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <label>可能性</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>影响程度</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>阈值</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>创建者</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <label>跟踪者</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>时间</label>
+                                    <input type="text" class="form-control" name="content" placeholder="" disabled/>
+                                </div>
 
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary">提交更改</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
 
     <div style="margin-top: 30px">
         <div style="float:right">
-            <button type="button" class="btn btn-success">修改</button>
-            <button type="button" class="btn btn-danger">删除</button>
+            <button type="button" class="btn btn-success" id="modify" data-toggle="modal" data-target="#modifyModal">修改</button>
+            <button type="button" class="btn btn-danger" id="delete">删除</button>
         </div>
+
         <table class="table table-striped" >
             <thead>
             <tr>
@@ -198,12 +247,12 @@
                     <input type="checkbox" name="inlineRadioOptions" class="checkAll_index" value="">
                 </th>
                 <th>编号</th>
-                <th>内容</th>
                 <th>可能性</th>
                 <th>影响程度</th>
                 <th>阈值</th>
                 <th>创建者</th>
                 <th>跟踪者</th>
+                <th>时间</th>
             </tr>
             </thead>
             <tbody>
@@ -213,7 +262,6 @@
                     <input type="checkbox" name="inlineRadioOptions"  class="checkOne_index" value="">
                 </td>
                 <td class="riskId"><s:property value="id"></s:property></td>
-                <td><s:property value="content"></s:property></td>
                 <td><s:property value="possibility"></s:property></td>
                 <td><s:property value="effect"></s:property></td>
                 <td><s:property value="threshold"></s:property></td>
@@ -243,6 +291,7 @@
 </rapid:override>
 <rapid:override name="loadJsFile">
     <script src="/static/js/manager/checkAll.js"></script>
+    <script src="/static/js/manager/modify.js"></script>
 </rapid:override>
 
 <%@ include file="/base.jsp" %>
