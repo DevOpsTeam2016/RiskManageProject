@@ -205,7 +205,7 @@
                                 <div class="form-group">
                                     <input type="hidden" name="operation" value="update" />
                                     <label>编号</label>
-                                    <input type="text" class="form-control" name="riskPlanId" disabled/>
+                                    <input type="text" class="form-control" name="riskPlanId" hidden/>
                                 </div>
                                 <div class="form-group">
                                     <label>风险名称</label>

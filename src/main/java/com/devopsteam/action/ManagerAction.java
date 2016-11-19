@@ -85,18 +85,23 @@ public class ManagerAction extends BaseAction {
             String riskIds = request.getParameter("riskIds");
             String[] riskIdList = riskIds.split(",");
             managerService.importRiskPlan(planId, riskIdList, session.get("username").toString());
+            return "reload";
         } else if (operation.equals("update")) {
             String riskPlanId = request.getParameter("riskPlanId");
+//            if (riskPlanId==null) riskPlanId="4";
             String description = request.getParameter("description");
             String possibility = request.getParameter("possibility");
             String effect = request.getParameter("effect");
             String threshold = request.getParameter("threshold");
             managerService.updateRiskPlan(riskPlanId, description, possibility, effect, threshold);
+            return "reload";
         } else if (operation.equals("delete")) {
             String riskPlanId = request.getParameter("riskPlanId");
             managerService.deleteRiskPlan(riskPlanId);
+            return "success";
+        }else {
+            return "error";
         }
-        return "success";
     }
 
     public String graphics(){

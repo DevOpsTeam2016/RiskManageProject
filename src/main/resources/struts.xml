@@ -60,6 +60,7 @@
                     message
                 </param>
             </result>
+            <result name="reload" type="redirect">/manage/plan</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>
         <action name="graphics" class="ManagerAction" method="graphics">
