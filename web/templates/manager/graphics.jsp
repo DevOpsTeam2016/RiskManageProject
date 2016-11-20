@@ -30,7 +30,7 @@
                             <label>开始时间：</label>
                         </div>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="start" placeholder="格式YYYY/MM/DD" required/>
+                            <input type="date" class="form-control" name="start" required/>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <label>结束时间：</label>
                         </div>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="end" placeholder="格式YYYY/MM/DD" required/>
+                            <input type="date" class="form-control" name="end" required/>
                         </div>
                     </div>
                 </div>
@@ -58,14 +58,143 @@
             </div>
         </form>
         <hr>
-        <div id="main" style="height:400px"></div>
+        <div id="most_recognized" style="height:400px"></div>
+        <div id="most_problemed" style="height:400px"></div>
     </div>
 </rapid:override>
 
 
 <rapid:override name="loadJsFile">
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
-    <script src="/static/js/manager/graphics.js"></script>
+
+    <script>
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+
+        // 使用
+        require(
+                [
+                    'echarts',
+                    'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById('most_recognized'));
+                    var option = {
+                        title : {
+                            text: '被识别最多的风险',
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['被识别最多的风险']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : [
+                                    <s:iterator value="mostRecognizedRisk">"<s:property value="content"></s:property>",</s:iterator>
+                                ]
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'被识别最多的风险',
+                                type:'bar',
+                                data:[
+                                    <s:iterator value="mostRecognizedRisk"><s:property value="number"></s:property>,</s:iterator>
+                                ],
+
+                            }
+                        ]
+                    };
+
+                    // 为echarts对象加载数据
+                    myChart.setOption(option);
+                }
+        );
+
+        // 使用
+        require(
+                [
+                    'echarts',
+                    'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById('most_problemed'));
+                    var option = {
+                        title : {
+                            text: '演变成问题最多的风险',
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['演变成问题最多的风险']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : [
+                                    <s:iterator value="mostProblemedRisk">"<s:property value="content"></s:property>",</s:iterator>
+                                ]
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'演变成问题最多的风险',
+                                type:'bar',
+                                data:[
+                                    <s:iterator value="mostProblemedRisk"><s:property value="number"></s:property>,</s:iterator>
+                                ],
+
+                            }
+                        ]
+                    };
+
+                    // 为echarts对象加载数据
+                    myChart.setOption(option);
+                }
+        );
+    </script>
 </rapid:override>
 <%@ include file="/base.jsp" %>
 

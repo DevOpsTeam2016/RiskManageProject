@@ -116,9 +116,10 @@ public class ManagerAction extends BaseAction {
     }
 
     public String graphics(){
-        if(request.getMethod().equalsIgnoreCase("get")) return "graphics";
         String start = request.getParameter("start");
         String end = request.getParameter("end");
+        if (start == null) start = "2016-01-01 00:00:00";
+        if (end == null) end = "2017-01-01 00:00:00";
         mostRecognizedRisk = managerService.getMostRecognizedRisk(start, end);
         mostProblemedRisk = managerService.getMostProblemedRisk(start, end);
         return "graphics";

@@ -117,7 +117,9 @@ public class ManagerServiceImpl implements ManagerService {
     public List<RiskVo> getMostRecognizedRisk(String start, String end) {
         List<RiskPlan> allRiskPlan = riskPlanDao.findWithTime(Utils.convertToDate(start), Utils.convertToDate(end));
         int[] riskIds = new int[riskDao.getCount()];
-        for (RiskPlan temp: allRiskPlan) riskIds[temp.getRisk().getId()-1] ++;
+        if (allRiskPlan != null) {
+            for (RiskPlan temp: allRiskPlan) riskIds[temp.getRisk().getId()-1] ++;
+        }
         List<RiskVo> riskVoList = new ArrayList<RiskVo>();
         List<Risk> riskList = riskDao.findAll();
         for (int i = 0; i < riskIds.length; i++) {
@@ -138,8 +140,10 @@ public class ManagerServiceImpl implements ManagerService {
     public List<RiskVo> getMostProblemedRisk(String start, String end) {
         List<State> allState = stateDao.findStateWithTime(Utils.convertToDate(start), Utils.convertToDate(end));
         int[] riskIds = new int[riskDao.getCount()];
-        for (State temp: allState) {
-            if (temp.getState() == 1) riskIds[temp.getRiskPlan().getRisk().getId()-1]++;
+        if (allState != null) {
+            for (State temp: allState) {
+                if (temp.getState() == 1) riskIds[temp.getRiskPlan().getRisk().getId()-1]++;
+            }
         }
         List<RiskVo> riskVoList = new ArrayList<RiskVo>();
         List<Risk> riskList = riskDao.findAll();
