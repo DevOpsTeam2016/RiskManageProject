@@ -4,6 +4,7 @@ import com.devopsteam.model.Plan;
 import com.devopsteam.model.Risk;
 import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.User;
+import com.devopsteam.vo.RiskVo;
 
 import java.util.Date;
 import java.util.List;
@@ -36,8 +37,8 @@ public interface ManagerService {
 
     public List<Risk> getRiskList();
 
-    public Map<Integer, Risk> getMostRecognizedRisk(String start, String end);
+    public List<RiskVo> getMostRecognizedRisk(String start, String end);
 
-    public Map<Integer, Risk> getMostProblemedRisk(String start, String end);
+    public List<RiskVo> getMostProblemedRisk(String start, String end);
 
 }

@@ -20,13 +20,13 @@ public class RiskPlan {
     int possibility;  //0 1 2递增
     int effect;  //0 1 2递增
     int threshold;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Plan plan;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Risk risk;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     User creator;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     User tracker;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "riskPlan")
     @OrderBy("timestamp desc")

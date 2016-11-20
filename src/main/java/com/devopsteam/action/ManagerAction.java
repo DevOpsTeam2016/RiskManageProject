@@ -5,11 +5,13 @@ import com.devopsteam.model.Risk;
 import com.devopsteam.model.RiskPlan;
 import com.devopsteam.model.User;
 import com.devopsteam.service.ManagerService;
+import com.devopsteam.vo.RiskVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by J on 2016/11/8.
@@ -25,8 +27,8 @@ public class ManagerAction extends BaseAction {
     private List<User> trackerList;
     private List<Risk> riskList;
 
-    private Map<Integer, Risk> mostRecognizedRisk;
-    private Map<Integer, Risk> mostProblemedRisk;
+    private List<RiskVo> mostRecognizedRisk;
+    private List<RiskVo> mostProblemedRisk;
 
     private String message;
 
@@ -80,15 +82,24 @@ public class ManagerAction extends BaseAction {
     public String risk() {
         //风险的删改，导入
         String operation = request.getParameter("operation");
-        if (operation.equals("import")) {
-            String planId = request.getParameter("planId");
-            String riskIds = request.getParameter("riskIds");
-            String[] riskIdList = riskIds.split(",");
-            managerService.importRiskPlan(planId, riskIdList, session.get("username").toString());
-            return "reload";
+        if(operation.equals("query")){
+            String start = request.getParameter("start");
+            String end = request.getParameter("end");
+            String riskRadio = request.getParameter("riskRadio");
+            if (riskRadio.equals("0")) {
+                mostRecognizedRisk = managerService.getMostRecognizedRisk(start, end);
+                return "most_recognized";
+            } else {
+                mostProblemedRisk = managerService.getMostProblemedRisk(start, end);
+                return "most_problemed";
+            }
+        }else if (operation.equals("import")) {
+            String[] riskIds = request.getParameterValues("riskIds[]");
+            managerService.importRiskPlan(session.get("planId").toString(), riskIds, session.get("username").toString());
+            message = "success";
+            return "import_done";
         } else if (operation.equals("update")) {
             String riskPlanId = request.getParameter("riskPlanId");
-//            if (riskPlanId==null) riskPlanId="4";
             String description = request.getParameter("description");
             String possibility = request.getParameter("possibility");
             String effect = request.getParameter("effect");
@@ -145,19 +156,19 @@ public class ManagerAction extends BaseAction {
         this.riskList = riskList;
     }
 
-    public Map<Integer, Risk> getMostRecognizedRisk() {
+    public List<RiskVo> getMostRecognizedRisk() {
         return mostRecognizedRisk;
     }
 
-    public void setMostRecognizedRisk(Map<Integer, Risk> mostRecognizedRisk) {
+    public void setMostRecognizedRisk(List<RiskVo> mostRecognizedRisk) {
         this.mostRecognizedRisk = mostRecognizedRisk;
     }
 
-    public Map<Integer, Risk> getMostProblemedRisk() {
+    public List<RiskVo> getMostProblemedRisk() {
         return mostProblemedRisk;
     }
 
-    public void setMostProblemedRisk(Map<Integer, Risk> mostProblemedRisk) {
+    public void setMostProblemedRisk(List<RiskVo> mostProblemedRisk) {
         this.mostProblemedRisk = mostProblemedRisk;
     }
 

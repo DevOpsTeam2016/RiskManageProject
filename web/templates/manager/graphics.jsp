@@ -22,7 +22,7 @@
         </div>
     </div>
     <div style=" width: 70%;float: left;margin-top: 30px;margin-left: 40px;margin-right: 40px">
-        <form action="" method="post">
+        <form action="/manage/graphics" method="post">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group row">
@@ -30,7 +30,7 @@
                             <label>开始时间：</label>
                         </div>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="name" placeholder="格式YYYY/MM/DD" required/>
+                            <input type="text" class="form-control" name="start" placeholder="格式YYYY/MM/DD" required/>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <label>结束时间：</label>
                         </div>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="name" placeholder="格式YYYY/MM/DD" required/>
+                            <input type="text" class="form-control" name="end" placeholder="格式YYYY/MM/DD" required/>
                         </div>
                     </div>
                 </div>

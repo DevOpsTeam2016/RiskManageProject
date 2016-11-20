@@ -3,6 +3,7 @@ package com.devopsteam.service.impl;
 import com.devopsteam.dao.*;
 import com.devopsteam.model.*;
 import com.devopsteam.service.ManagerService;
+import com.devopsteam.vo.RiskVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -113,29 +114,47 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     //获取特定时间段被识别最多的风险, 返回风险与数量
-    public Map<Integer, Risk> getMostRecognizedRisk(String start, String end) {
+    public List<RiskVo> getMostRecognizedRisk(String start, String end) {
         List<RiskPlan> allRiskPlan = riskPlanDao.findWithTime(Utils.convertToDate(start), Utils.convertToDate(end));
         int[] riskIds = new int[riskDao.getCount()];
-        for (RiskPlan temp: allRiskPlan) riskIds[temp.getRisk().getId()] ++;
-        Map<Integer, Risk> map = new TreeMap<Integer, Risk>();
+        for (RiskPlan temp: allRiskPlan) riskIds[temp.getRisk().getId()-1] ++;
+        List<RiskVo> riskVoList = new ArrayList<RiskVo>();
         List<Risk> riskList = riskDao.findAll();
         for (int i = 0; i < riskIds.length; i++) {
-            map.put(riskIds[i], riskList.get(i));
+            Risk risk = riskList.get(i);
+            RiskVo vo = new RiskVo(risk.getId(), risk.getContent(), riskIds[i]);
+            riskVoList.add(vo);
         }
-        return map;
+        Collections.sort(riskVoList, new Comparator<RiskVo>(){
+            public int compare(RiskVo o1, RiskVo o2){
+                if(o1.getNumber() == o2.getNumber())
+                    return 0;
+                return o1.getNumber() > o2.getNumber() ? -1 : 1;
+            }
+        });
+        return riskVoList;
     }
 
-    public Map<Integer, Risk> getMostProblemedRisk(String start, String end) {
+    public List<RiskVo> getMostProblemedRisk(String start, String end) {
         List<State> allState = stateDao.findStateWithTime(Utils.convertToDate(start), Utils.convertToDate(end));
         int[] riskIds = new int[riskDao.getCount()];
         for (State temp: allState) {
-            if (temp.getState() == 1) riskIds[temp.getRiskPlan().getRisk().getId()]++;
+            if (temp.getState() == 1) riskIds[temp.getRiskPlan().getRisk().getId()-1]++;
         }
-        Map<Integer, Risk> map = new TreeMap<Integer, Risk>();
+        List<RiskVo> riskVoList = new ArrayList<RiskVo>();
         List<Risk> riskList = riskDao.findAll();
         for (int i = 0; i < riskIds.length; i++) {
-            map.put(riskIds[i], riskList.get(i));
+            Risk risk = riskList.get(i);
+            RiskVo vo = new RiskVo(risk.getId(), risk.getContent(), riskIds[i]);
+            riskVoList.add(vo);
         }
-        return map;
+        Collections.sort(riskVoList, new Comparator<RiskVo>(){
+            public int compare(RiskVo o1, RiskVo o2){
+                if(o1.getNumber() == o2.getNumber())
+                    return 0;
+                return o1.getNumber() > o2.getNumber() ? -1 : 1;
+            }
+        });
+        return riskVoList;
     }
 }

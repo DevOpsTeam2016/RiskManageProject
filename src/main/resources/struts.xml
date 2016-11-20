@@ -60,6 +60,21 @@
                     message
                 </param>
             </result>
+            <result name="most_recognized" type="json">
+                <param name="root">
+                    mostRecognizedRisk
+                </param>
+            </result>
+            <result name="most_problemed" type="json">
+                <param name="root">
+                    mostProblemedRisk
+                </param>
+            </result>
+            <result name="import_done" type="json">
+                <param name="includeProperties">
+                    message
+                </param>
+            </result>
             <result name="reload" type="redirect">/manage/plan</result>
             <interceptor-ref name="ManagerStack"></interceptor-ref>
         </action>

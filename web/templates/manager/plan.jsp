@@ -32,51 +32,45 @@
                         <h4 class="modal-title" id="myModalLabel1" >导入风险条目 </h4>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group row">
-                                        <div class="col-sm-5">
-                                            <label>开始时间：</label>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control" name="name" placeholder="格式YYYY/MM/DD" required/>
-                                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <label>开始时间：</label>
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group row">
-                                        <div class="col-sm-5">
-                                            <label>结束时间：</label>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control" name="name" placeholder="格式YYYY/MM/DD" required/>
-                                        </div>
+                                    <div class="col-sm-7">
+                                        <input type="date" class="form-control" name="start" required/>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <label>结束时间：</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="date" class="form-control" name="end" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 被识别最多的风险
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">演变成问题最多的风险
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-group" style="float: right">
-                                        <button type="submit" class="btn btn-primary">查询</button>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div id="radios" class="col-sm-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="riskRadio" id="inlineRadio1" value="0"> 被识别最多的风险
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="riskRadio" id="inlineRadio2" value="1">演变成问题最多的风险
+                                </label>
                             </div>
-                        </form>
+                            <div class="col-sm-2">
+                                <button type="button" class="query btn btn-primary">查询</button>
+                            </div>
+                        </div>
                         <hr>
                         <div style="float:right">
-                            <button type="button" class="btn btn-success">导入</button>
+                            <button type="button" class="import btn btn-success">导入</button>
                         </div>
                         <table class="table table-striped"  style="padding-top: 20px">
                             <thead>
@@ -84,41 +78,19 @@
                                 <th>
                                     <input type="checkbox" name="inlineRadioOptions" class="checkAll" value="">
                                 </th>
-                                <th>编号</th>
-                                <th>项目名称</th>
-                                <th>内容</th>
-                                <th>可能性</th>
-                                <th>影响程度</th>
-                                <th>阈值</th>
-                                <th>创建者</th>
+                                <th>风险编号</th>
+                                <th>风险名称</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="query_tbody">
                             <s:iterator value="riskList">
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="inlineRadioOptions"  class="checkOne"   value="">
+                                        <input type="checkbox" name="inlineRadioOptions" class="checkOne" value="">
                                     </td>
-                                    <td>
-                                        <a href="/tracker/risk?id=<s:property value="id"></s:property>"><s:property value="id"></s:property></a>
-                                    </td>
-                                    <td>
-                                        <s:property value="project.name"></s:property>
-                                    </td>
+                                    <td class="riskId"><s:property value="id"></s:property></td>
                                     <td>
                                         <s:property value="content"></s:property>
-                                    </td>
-                                    <td>
-                                        <s:property value="possibility"></s:property>
-                                    </td>
-                                    <td>
-                                        <s:property value="effect"></s:property>
-                                    </td>
-                                    <td>
-                                        <s:property value="threshold"></s:property>
-                                    </td>
-                                    <td>
-                                        <s:property value="creator.name"></s:property>
                                     </td>
                                 </tr>
                             </s:iterator>

@@ -49,18 +49,54 @@ $(document).ready(function() {
         $('#modifyModal input[name="threshold"]').val(threshold);
         var creator = $(this).parent().closest('tr').find('.creator').text();
         $('#modifyModal input[name="creator"]').val(creator);
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/manage/risk",
-        //     data: {"operation": "update", "riskPlanId": riskPlanId},
-        //     dataType: "json",
-        //     success: function() {
-        //         location.reload();
-        //     },
-        //     error: function() {
-        //         alert('Error');
-        //     }
-        // });
+    });
+
+    $('.query').click(function() {
+        var start = $('input[name="start"]').val();
+        var end = $('input[name="end"]').val();
+        var riskRadio = $('#radios input[name="riskRadio"]:checked').val();
+        $.ajax({
+            type: "POST",
+            url: "/manage/risk",
+            data: {"operation": "query", "start": start, "end": end, "riskRadio": riskRadio},
+            dataType: "json",
+            success: function(data) {
+                var html = '';
+                data.forEach(function(temp) {
+                    html += '<tr>' +
+                        '<td><input type="checkbox" name="inlineRadioOptions" class="checkOne" value=""></td>' +
+                        '<td class="riskId">' + temp.id + '</td>' +
+                        '<td>' + temp.content + '</td>' +
+                        '</tr>';
+                });
+                document.getElementById('query_tbody').innerHTML = html;
+            },
+            error: function() {
+                alert('Error');
+            }
+        });
+    });
+
+    $('.import').click(function() {
+        var list = [];
+        $('input[name="inlineRadioOptions"]').each(function() {
+            if ($(this).is(':checked')) {
+                var id = $(this).closest('tr').find('.riskId').text();
+                list.push(id);
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/manage/risk",
+            data: {"operation": "import", "riskIds": list},
+            dataType: "json",
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                alert('Error');
+            }
+        });
     });
 
 });
